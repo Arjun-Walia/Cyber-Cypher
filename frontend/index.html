@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="images/logo.png">
-  <title>Login/Signup</title>
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #ffffff; /* Keep existing background */
-      color: #27445D;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      position: relative;
-      overflow: hidden; /* Important for the pseudo-element */
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="images/logo.png" />
+    <title>Login/Signup</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #ffffff; /* Keep existing background */
+        color: #27445d;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        position: relative;
+        overflow: hidden; /* Important for the pseudo-element */
+      }
 
-    /*  Apply animation to a pseudo-element */
-    body::before {
-        content: '';
+      /*  Apply animation to a pseudo-element */
+      body::before {
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
@@ -32,73 +32,116 @@
         background-size: 50px 50px;
         animation: moveBackground 10s linear infinite;
         z-index: -1; /* Behind the content */
-    }
+      }
 
-    @keyframes moveBackground {
-        0% { transform: translate(0, 0); }
-        100% { transform: translate(-50px, -50px); } /* Adjust for desired movement */
-    }
+      @keyframes moveBackground {
+        0% {
+          transform: translate(0, 0);
+        }
+        100% {
+          transform: translate(-50px, -50px);
+        } /* Adjust for desired movement */
+      }
 
-    .container {
-      background-color: #497D74;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      width: 100%;
-      max-width: 400px;
-      text-align: center;
-      z-index: 1; /* Ensure container is above the background */
-      position: relative; /* For z-index */
-    }
+      .container {
+        background-color: #497d74;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+        z-index: 1; /* Ensure container is above the background */
+        position: relative; /* For z-index */
+      }
 
-    h1 { color: #EFE9D5; margin-bottom: 20px; }
+      h1 {
+        color: #efe9d5;
+        margin-bottom: 20px;
+      }
 
-    input {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: none;
-      border-radius: 5px;
-      font-size: 1rem;
-    }
+      input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+      }
 
-    button {
-      background-color: #71BBB2;
-      color: #EFE9D5;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      font-size: 1rem;
-      cursor: pointer;
-      margin-top: 10px;
-    }
+      button {
+        background-color: #71bbb2;
+        color: #efe9d5;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+        margin-top: 10px;
+      }
 
-    button:hover { background-color: #27445D; }
-    .toggle-form { color: #EFE9D5; margin-top: 15px; }
-    .toggle-form a { color: #71BBB2; text-decoration: none; }
-    .toggle-form a:hover { text-decoration: underline; }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div id="login-form">
-      <h1>Login</h1>
-      <input type="text" id="login-username" placeholder="Username" required>
-      <input type="password" id="login-password" placeholder="Password" required>
-      <button onclick="login()">Login</button>
-      <p class="toggle-form">Don't have an account? <a href="#" onclick="toggleForm('signup')">Sign Up</a></p>
+      button:hover {
+        background-color: #27445d;
+      }
+      .toggle-form {
+        color: #efe9d5;
+        margin-top: 15px;
+      }
+      .toggle-form a {
+        color: #71bbb2;
+        text-decoration: none;
+      }
+      .toggle-form a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div id="login-form">
+        <h1>Login</h1>
+        <input
+          type="text"
+          id="login-username"
+          placeholder="Username"
+          required
+        />
+        <input
+          type="password"
+          id="login-password"
+          placeholder="Password"
+          required
+        />
+        <button onclick="login()">Login</button>
+        <p class="toggle-form">
+          Don't have an account?
+          <a href="#" onclick="toggleForm('signup')">Sign Up</a>
+        </p>
+      </div>
+
+      <div id="signup-form" style="display: none">
+        <h1>Sign Up</h1>
+        <input
+          type="text"
+          id="signup-username"
+          placeholder="Username"
+          required
+        />
+        <input type="email" id="signup-email" placeholder="Email" required />
+        <input
+          type="password"
+          id="signup-password"
+          placeholder="Password"
+          required
+        />
+        <button onclick="signup()">Sign Up</button>
+        <p class="toggle-form">
+          Already have an account?
+          <a href="#" onclick="toggleForm('login')">Login</a>
+        </p>
+      </div>
     </div>
 
-    <div id="signup-form" style="display: none;">
-      <h1>Sign Up</h1>
-      <input type="text" id="signup-username" placeholder="Username" required>
-      <input type="email" id="signup-email" placeholder="Email" required>
-      <input type="password" id="signup-password" placeholder="Password" required>
-      <button onclick="signup()">Sign Up</button>
-      <p class="toggle-form">Already have an account? <a href="#" onclick="toggleForm('login')">Login</a></p>
-    </div>
-  </div>
-
-  <script src="index.js"></script>
-</body>
+    <script src="index.js"></script>
+  </body>
 </html>

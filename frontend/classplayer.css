@@ -1,118 +1,137 @@
-/* From Uiverse.io by chethan025 */ 
-.input[type = "text"] {
-    display: block;
-    color: rgb(34, 34, 34);
-    background: linear-gradient(142.99deg, rgba(217, 217, 217, 0.63) 15.53%, rgba(243, 243, 243, 0.63) 88.19%);
-    box-shadow: 0px 12px 24px -1px rgba(0, 0, 0,0.18);
-    border-color: rgba(7, 4, 14, 0);
-    border-radius: 50px;
-    block-size: 20px;
-    margin: 7px auto;
-    padding: 18px 15px;
-    outline: none;
-    text-align: center;
-    width: 200px;
-    transition: 0.5s;
-  }
-  
-  .input[type = "text"]:hover {
-    width: 240px;
-  }
-  
-  .input[type = "text"]:focus {
-    width: 280px;
-  }
-  body{
-    font-family: 'Lexend', sans-serif;
+/* From Uiverse.io by chethan025 */
+.input[type="text"] {
+  display: block;
+  color: rgb(34, 34, 34);
+  background: linear-gradient(
+    142.99deg,
+    rgba(217, 217, 217, 0.63) 15.53%,
+    rgba(243, 243, 243, 0.63) 88.19%
+  );
+  box-shadow: 0px 12px 24px -1px rgba(0, 0, 0, 0.18);
+  border-color: rgba(7, 4, 14, 0);
+  border-radius: 50px;
+  block-size: 20px;
+  margin: 7px auto;
+  padding: 18px 15px;
+  outline: none;
+  text-align: center;
+  width: 200px;
+  transition: 0.5s;
+}
+
+.input[type="text"]:hover {
+  width: 240px;
+}
+
+.input[type="text"]:focus {
+  width: 280px;
+}
+body {
+  font-family: "Lexend", sans-serif;
 }
 .fade-in {
-    opacity: 0;
-    animation: fadeIn 1s ease-in forwards;
+  opacity: 0;
+  animation: fadeIn 1s ease-in forwards;
 }
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* Navbar Styling */
 .navbar {
-    background-color: #4a7b72;
-    padding: 1vh 2vw;
-    border-radius: 1vh;
-    height: 10vh;
+  background-color: #4a7b72;
+  padding: 1vh 2vw;
+  border-radius: 1vh;
+  height: 10vh;
 }
-
 
 /* Scrollbar */
 .custom-scrollbar {
-    overflow-y: auto;
-    max-height: 10vh;
-    scrollbar-width: thin;
+  overflow-y: auto;
+  max-height: 10vh;
+  scrollbar-width: thin;
 }
 .custom-scrollbar::-webkit-scrollbar {
-    width: 0.5vw;
+  width: 0.5vw;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb {
-    background-color: #ccc;
-    border-radius: 1vh;
+  background-color: #ccc;
+  border-radius: 1vh;
 }
 
 /* Rectangle styles */
 .rectangle-large {
-    width: 30vw;
-    height: 40vh;
-    background-color: #5f857e;
-    margin-top: 5vh;
+  width: 30vw;
+  height: 40vh;
+  background-color: #5f857e;
+  margin-top: 5vh;
 }
 .rectangle-small {
-    width: 30vw;
-    height: 5vh;
-    background-color: #eae2cf;
-    margin-top: 1vh;
+  width: 30vw;
+  height: 5vh;
+  background-color: #eae2cf;
+  margin-top: 1vh;
 }
 .rectangle-gray {
-    width: 30vw;
-    height: 5vh;
-    background-color: #d1d1d1;
-    margin-top: 1vh;
+  width: 30vw;
+  height: 5vh;
+  background-color: #d1d1d1;
+  margin-top: 1vh;
 }
 .text-animation {
-    animation: fadeInOut 2s ease-in-out;
+  animation: fadeInOut 2s ease-in-out;
 }
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes fadeOut {
-    from { opacity: 1; transform: translateY(0); }
-    to { opacity: 0; transform: translateY(-10px); }
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
 }
 
 .fade-in {
-    animation: fadeIn 1s ease-in-out forwards;
+  animation: fadeIn 1s ease-in-out forwards;
 }
 
 .fade-out {
-    animation: fadeOut 1s ease-in-out forwards;
+  animation: fadeOut 1s ease-in-out forwards;
 }
 
 /* bg */
 
 @keyframes moveBackground {
-    0% {
-        background-position: 0 0;
-    }
-    100% {
-        background-position: 100px 100px;
-    }
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100px 100px;
+  }
 }
 
 .moving-background {
-    background: radial-gradient(circle, #ffa60120 20%, transparent 21%);
-    background-size: 50px 50px; /* Keeps the circles round */
-    background-color: #ffffff;
-    
-    /* Slow & Smooth Animation */
-    animation: moveBackground 10s linear infinite;
+  background: radial-gradient(circle, #ffa60120 20%, transparent 21%);
+  background-size: 50px 50px; /* Keeps the circles round */
+  background-color: #ffffff;
+
+  /* Slow & Smooth Animation */
+  animation: moveBackground 10s linear infinite;
 }
