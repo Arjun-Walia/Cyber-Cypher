@@ -1,45 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>User Profile</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="profile.css"> <!-- Keep your custom styles, but we'll minimize them -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="profile.css" />
+    <link rel="icon" type="image/png" href="images/logo.png" />
     <style>
-        /* Keep essential custom styles, but prefer Tailwind */
-        body {
-            font-family: 'Lexend', sans-serif;
-            background-color: #efe9d5; /* Consistent background */
-        }
-        .progress-bar-fill {
-            /* Keep your gradient, but use Tailwind for other styles */
-            background: linear-gradient(135deg, #497d74, #37665e);
-            transition: width 1s ease;
-            border-radius: 20px; /* Consistent border-radius */
-        }
-        .achievement-card {
-            background-color: #f8f9fa; /* Light background for cards */
-            border-radius: 8px;
-            padding: 10px;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow */
-        }
+      body {
+        font-family: "Lexend", sans-serif;
+        background-color: #efe9d5;
+      }
+      .progress-bar-fill {
+        background: linear-gradient(135deg, #497d74, #37665e);
+        transition: width 1s ease;
+        border-radius: 20px; /* Consistent border-radius */
+      }
+      .achievement-card {
+        background-color: #f8f9fa; /* Light background for cards */
+        border-radius: 8px;
+        padding: 10px;
+        text-align: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+      }
     </style>
-</head>
-<body class="bg-gray-100">
-
+  </head>
+  <body class="bg-gray-100">
     <nav class="bg-[#497d74] p-4 rounded-b-lg shadow-md">
       <div class="container mx-auto flex justify-between items-center">
         <div class="flex items-center">
-          <a href="main.html" class="text-white hover:text-gray-200 text-lg font-semibold flex items-center">
+          <a
+            href="main.html"
+            class="text-white hover:text-gray-200 text-lg font-semibold flex items-center"
+          >
             <i class="fas fa-home mr-2"></i> Home
           </a>
         </div>
         <div>
-          <button onclick="logout()" class="bg-[#efe9d5] hover:bg-[#bab195] text-[#497d74] font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out">
+          <button
+            onclick="logout()"
+            class="bg-[#efe9d5] hover:bg-[#bab195] text-[#497d74] font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out"
+          >
             Logout
           </button>
         </div>
@@ -47,57 +60,92 @@
     </nav>
 
     <div class="container mx-auto p-6">
-        <div class="md:flex md:space-x-8">
-
-            <!-- Left Section (Profile) -->
-            <div class="md:w-1/4 mb-8 md:mb-0">
-                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
-                    <img id="profile-pic" src="https://via.placeholder.com/150" alt="Profile Picture" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-[#497d74]">
-                    <h1 id="username" class="text-2xl font-semibold">Loading...</h1>
-                    <p id="bio" class="text-gray-600">Fetching user data...</p>
-                </div>
-            </div>
-
-            <!-- Right Section (Sections) -->
-            <div class="md:w-3/4">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-                    <!-- Progress Section -->
-                    <div class="bg-white p-6 rounded-lg shadow-lg">
-                        <h2 class="text-xl font-semibold mb-4 text-[#497d74]">Your Progress</h2>
-                        <div class="progress-bar">
-                            <div class="progress-bar-fill" id="progress-fill"></div>
-                        </div>
-                        <p id="progress-text" class="mt-2 text-gray-600">0% completed</p>
-                    </div>
-
-                    <!-- Achievements Section -->
-                    <div class="bg-white p-6 rounded-lg shadow-lg">
-                        <h2 class="text-xl font-semibold mb-4 text-[#497d74]">Achievements</h2>
-                        <div id="achievements-container" class="grid grid-cols-2 gap-4">
-                            <p>Loading achievements...</p>
-                        </div>
-                    </div>
-
-                    <!-- Update Profile Section -->
-                    <div class="bg-white p-6 rounded-lg shadow-lg">
-                        <h2 class="text-xl font-semibold mb-4 text-[#497d74]">Update Profile</h2>
-                        <textarea id="update-bio" placeholder="Update your bio" class="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-[#497d74] focus:border-transparent"></textarea>
-                        <input type="text" id="update-profile-pic" placeholder="Profile Picture URL" class="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-[#497d74] focus:border-transparent">
-                        <button onclick="updateProfile()" class="bg-[#497d74] hover:bg-[#37665e] text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out w-full">Update Profile</button>
-                    </div>
-
-                    <!-- Daily Goal Section -->
-                    <div class="bg-white p-6 rounded-lg shadow-lg">
-                        <h2 class="text-xl font-semibold mb-4 text-[#497d74]">Set Daily Goal</h2>
-                        <input type="number" id="daily-goal" placeholder="Daily Learning Goal (minutes)" class="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-[#497d74] focus:border-transparent">
-                        <button onclick="updateDailyGoal()" class="bg-[#497d74] hover:bg-[#37665e] text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out w-full">Save Goal</button>
-                    </div>
-                </div>
-            </div>
+      <div class="md:flex md:space-x-8">
+        <!-- Left Section (Profile) -->
+        <div class="md:w-1/4 mb-8 md:mb-0">
+          <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+            <img
+              id="profile-pic"
+              src="https://via.placeholder.com/150"
+              alt="Profile Picture"
+              class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-[#497d74]"
+            />
+            <h1 id="username" class="text-2xl font-semibold">Loading...</h1>
+            <p id="bio" class="text-gray-600">Fetching user data...</p>
+          </div>
         </div>
+
+        <!-- Right Section (Sections) -->
+        <div class="md:w-3/4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Progress Section -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+              <h2 class="text-xl font-semibold mb-4 text-[#497d74]">
+                Your Progress
+              </h2>
+              <div class="progress-bar">
+                <div class="progress-bar-fill" id="progress-fill"></div>
+              </div>
+              <p id="progress-text" class="mt-2 text-gray-600">0% completed</p>
+            </div>
+
+            <!-- Achievements Section -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+              <h2 class="text-xl font-semibold mb-4 text-[#497d74]">
+                Achievements
+              </h2>
+              <div id="achievements-container" class="grid grid-cols-2 gap-4">
+                <p>Loading achievements...</p>
+              </div>
+            </div>
+
+            <!-- Update Profile Section -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+              <h2 class="text-xl font-semibold mb-4 text-[#497d74]">
+                Update Profile
+              </h2>
+              <textarea
+                id="update-bio"
+                placeholder="Update your bio"
+                class="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-[#497d74] focus:border-transparent"
+              ></textarea>
+              <input
+                type="text"
+                id="update-profile-pic"
+                placeholder="Profile Picture URL"
+                class="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-[#497d74] focus:border-transparent"
+              />
+              <button
+                onclick="updateProfile()"
+                class="bg-[#497d74] hover:bg-[#37665e] text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out w-full"
+              >
+                Update Profile
+              </button>
+            </div>
+
+            <!-- Daily Goal Section -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+              <h2 class="text-xl font-semibold mb-4 text-[#497d74]">
+                Set Daily Goal
+              </h2>
+              <input
+                type="number"
+                id="daily-goal"
+                placeholder="Daily Learning Goal (minutes)"
+                class="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-[#497d74] focus:border-transparent"
+              />
+              <button
+                onclick="updateDailyGoal()"
+                class="bg-[#497d74] hover:bg-[#37665e] text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out w-full"
+              >
+                Save Goal
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script src="profile.js"></script>
-</body>
+  </body>
 </html>

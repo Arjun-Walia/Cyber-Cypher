@@ -13,9 +13,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     const userId = payload.userId;
 
     // Fetch the user profile
-    const response = await fetch(`http://localhost:3001/api/profile/${userId}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const response = await fetch(
+      `http://localhost:3001/api/profile/${userId}`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
 
     if (!response.ok) {
       throw new Error("Failed to fetch user profile");
@@ -25,14 +28,22 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Update the UI with user data
     document.getElementById("username").innerText = user.username;
-    document.getElementById("bio").innerText = user.bio || "Learning Enthusiast";
-    document.getElementById("profile-pic").src = user.profilePic || "https://via.placeholder.com/100";
+    document.getElementById("bio").innerText =
+      user.bio || "Learning Enthusiast";
+    document.getElementById("profile-pic").src =
+      user.profilePic || "https://via.placeholder.com/100";
     document.getElementById("progress-fill").style.width = user.progress + "%";
-    document.getElementById("progress-text").innerText = `${user.progress}% completed`;
+    document.getElementById(
+      "progress-text"
+    ).innerText = `${user.progress}% completed`;
 
-    const achievementsContainer = document.getElementById("achievements-container");
+    const achievementsContainer = document.getElementById(
+      "achievements-container"
+    );
     achievementsContainer.innerHTML = user.achievements.length
-      ? user.achievements.map(ach => `<div class="achievement-card"><p>${ach}</p></div>`).join("")
+      ? user.achievements
+          .map((ach) => `<div class="achievement-card"><p>${ach}</p></div>`)
+          .join("")
       : "<p>No achievements yet</p>";
 
     document.getElementById("daily-goal").value = user.dailyGoal || "";
@@ -52,11 +63,17 @@ async function updateProfile() {
   const profilePic = document.getElementById("update-profile-pic").value;
 
   try {
-    const response = await fetch(`http://localhost:3001/api/profile/${userId}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
-      body: JSON.stringify({ bio, profilePic }),
-    });
+    const response = await fetch(
+      `http://localhost:3001/api/profile/${userId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ bio, profilePic }),
+      }
+    );
 
     if (!response.ok) {
       throw new Error("Failed to update profile");
@@ -79,11 +96,17 @@ async function updateDailyGoal() {
   const dailyGoal = document.getElementById("daily-goal").value;
 
   try {
-    const response = await fetch(`http://localhost:3001/api/profile/${userId}/goal`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
-      body: JSON.stringify({ dailyGoal }),
-    });
+    const response = await fetch(
+      `http://localhost:3001/api/profile/${userId}/goal`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ dailyGoal }),
+      }
+    );
 
     if (!response.ok) {
       throw new Error("Failed to update daily goal");

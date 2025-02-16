@@ -8,9 +8,8 @@ const axios = require("axios");
 
 const app = express();
 const PORT = 3001;
-const SECRET_KEY = "your_secret_key"; // Replace with a real secret key in production
+const SECRET_KEY = "your_secret_key";
 
-// Middleware
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -44,7 +43,7 @@ const authenticateJWT = (req, res, next) => {
   if (token) {
     jwt.verify(token, SECRET_KEY, (err, user) => {
       if (err) {
-        return res.sendStatus(403); // Forbidden if token is invalid
+        return res.sendStatus(403);
       }
       req.user = user;
       next();
@@ -151,7 +150,9 @@ app.put("/api/profile/:userId", authenticateJWT, async (req, res) => {
     res.status(200).json(user);
   } catch (error) {
     console.error("Update Profile Error:", error);
-    res.status(500).json({ message: "Error updating profile", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Error updating profile", error: error.message });
   }
 });
 // Update Profile Endpoint (Protected)
@@ -169,7 +170,9 @@ app.put("/api/profile/:userId/goal", authenticateJWT, async (req, res) => {
     res.status(200).json(user);
   } catch (error) {
     console.error("Update Daily Goal Error:", error);
-    res.status(500).json({ message: "Error updating daily goal", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Error updating daily goal", error: error.message });
   }
 });
 
@@ -187,7 +190,9 @@ app.put("/api/profile/:userId/progress", authenticateJWT, async (req, res) => {
     res.status(200).json(user);
   } catch (error) {
     console.error("Update Progress Error:", error);
-    res.status(500).json({ message: "Error updating progress", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Error updating progress", error: error.message });
   }
 });
 // Start Server
