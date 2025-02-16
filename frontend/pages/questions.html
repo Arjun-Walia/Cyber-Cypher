@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Probability Quiz</title>
+  <link rel="stylesheet" href="questions.css">
+</head>
+<body>
+  <div class="quiz-container">
+    <h2>Probability Quiz</h2>
+    <div id="timer">Time Remaining: 30:00</div>
+
+    <div class="question" id="q1">
+      <h3>1. The probability that a student passes in Mathematics is 0.7, and the probability that they pass in Science is 0.6. If the probability of passing both subjects is 0.5, find the probability that the student passes:</h3>
+      <p>a) At least one subject b) Exactly one subject</p>
+      <div class="option"><input type="radio" name="q1" value="a"> a) 0.8 and 0.4</div>
+      <div class="option"><input type="radio" name="q1" value="b"> b) 0.7 and 0.3</div>
+      <div class="option"><input type="radio" name="q1" value="c"> c) 0.6 and 0.5</div>
+      <div class="option"><input type="radio" name="q1" value="d"> d) 0.85 and 0.2</div>
+    </div>
+
+    <div class="question" id="q2">
+      <h3>2. A box contains 5 red, 4 blue, and 3 green balls. One ball is drawn at random. What is the probability that it is either red or green?</h3>
+      <div class="option"><input type="radio" name="q2" value="a"> A) 5/12</div>
+      <div class="option"><input type="radio" name="q2" value="b"> B) 7/12</div>
+      <div class="option"><input type="radio" name="q2" value="c"> C) 3/12</div>
+      <div class="option"><input type="radio" name="q2" value="d"> D) 9/12</div>
+    </div>
+
+    <div class="question" id="q3">
+      <h3>3. Two dice are rolled. What is the probability that the sum is 9 or more?</h3>
+      <div class="option"><input type="radio" name="q3" value="a"> A) 5/12</div>
+      <div class="option"><input type="radio" name="q3" value="b"> B) 1/4</div>
+      <div class="option"><input type="radio" name="q3" value="c"> C) 7/36</div>
+      <div class="option"><input type="radio" name="q3" value="d"> D) 1/3</div>
+    </div>
+
+    <div class="question" id="q4">
+      <h3>4. A bag has 4 red, 5 green, and 6 blue balls. If one ball is drawn at random and then replaced, what is the probability of drawing a green ball twice?</h3>
+      <div class="option"><input type="radio" name="q4" value="a"> A) 5/15</div>
+      <div class="option"><input type="radio" name="q4" value="b"> B) 1/3</div>
+      <div class="option"><input type="radio" name="q4" value="c"> C) 25/225</div>
+      <div class="option"><input type="radio" name="q4" value="d"> D) 1/4</div>
+    </div>
+
+    <div class="question" id="q5">
+      <h3>5. A factory produces 60% of its products from Machine A and 40% from Machine B. Machine A produces 5% defective items, and Machine B produces 2% defective items. If a product is found defective, what is the probability it came from Machine A?</h3>
+      <div class="option"><input type="radio" name="q5" value="a"> A) 0.45</div>
+      <div class="option"><input type="radio" name="q5" value="b"> B) 0.60</div>
+      <div class="option"><input type="radio" name="q5" value="c"> C) 0.70</div>
+      <div class="option"><input type="radio" name="q5" value="d"> D) 0.55</div>
+    </div>
+
+    <button class="submit-btn" onclick="calculateScore()">Submit Answers</button>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    // Timer logic
+    let timeLeft = 30 * 60; // 30 minutes in seconds
+    const timerElement = document.getElementById("timer");
+
+    function updateTimer() {
+      const minutes = Math.floor(timeLeft / 60);
+      const seconds = timeLeft % 60;
+      timerElement.textContent = `Time Remaining: ${minutes}:${seconds.toString().padStart(2, "0")}`;
+
+      if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        calculateScore();
+      } else {
+        timeLeft--;
+      }
+    }
+
+    const timerInterval = setInterval(updateTimer, 1000);
+
+    // Calculate score
+    function calculateScore() {
+      const answers = {
+        q1: "a",
+        q2: "b",
+        q3: "d",
+        q4: "c",
+        q5: "b",
+      };
+
+      let score = 0;
+      for (const question in answers) {
+        const selectedOption = document.querySelector(`input[name="${question}"]:checked`);
+        if (selectedOption && selectedOption.value === answers[question]) {
+          score++;
+        }
+      }
+
+      const totalQuestions = Object.keys(answers).length;
+      const percentage = (score / totalQuestions) * 100;
+
+      // Display result
+      const resultElement = document.getElementById("result");
+      resultElement.innerHTML = `You scored ${score}/${totalQuestions} (${percentage.toFixed(2)}%)`;
+
+      // Update progress bar (send data to backend)
+      updateProgressBar(percentage);
+    }
+
+    // Update progress bar
+    async function updateProgressBar(percentage) {
+      const token = localStorage.getItem("authToken");
+      const payload = JSON.parse(atob(token.split(".")[1]));
+      const userId = payload.userId;
+
+      try {
+        const response = await fetch(`http://localhost:3001/api/profile/${userId}/progress`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+          body: JSON.stringify({ progress: percentage }),
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to update progress");
+        }
+
+        alert("Progress updated successfully!");
+      } catch (error) {
+        console.error("Update Progress Error:", error);
+        alert("Failed to update progress. Please try again.");
+      }
+    }
+  </script>
+</body>
+</html>

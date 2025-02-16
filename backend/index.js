@@ -173,6 +173,23 @@ app.put("/api/profile/:userId/goal", authenticateJWT, async (req, res) => {
   }
 });
 
+app.put("/api/profile/:userId/progress", authenticateJWT, async (req, res) => {
+  try {
+    const { progress } = req.body;
+    const user = await User.findByIdAndUpdate(
+      req.params.userId,
+      { progress },
+      { new: true }
+    );
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.status(200).json(user);
+  } catch (error) {
+    console.error("Update Progress Error:", error);
+    res.status(500).json({ message: "Error updating progress", error: error.message });
+  }
+});
 // Start Server
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);

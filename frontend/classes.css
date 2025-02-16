@@ -1,0 +1,101 @@
+/* General Styles */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+/* Navbar */
+.navbar {
+  background-color: #4a7b72;
+  padding: 1vh 2vw;
+  border-radius: 1vh;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Hamburger Menu */
+#hamburger {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  #hamburger {
+    display: block;
+  }
+  #nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 10vh;
+    left: 0;
+    width: 100%;
+    background-color: #4a7b72;
+    padding: 1rem;
+    z-index: 1000;
+  }
+  #nav-links.active {
+    display: flex;
+  }
+}
+
+/* Hero Section */
+.hero-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 48px;
+  margin-top: 16px;
+}
+
+.tile {
+  background-color: #f4eddc;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  padding: 32px;
+  width: 384px;
+  height: 256px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.play-icon {
+  background-color: white;
+  padding: 16px;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.play-icon:hover {
+  background-color: #e0e0e0;
+}
+
+.tile-text {
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 24px;
+}
+
+/* Background Animation */
+@keyframes moveBackground {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100px 100px;
+  }
+}
+
+.moving-background {
+  background: radial-gradient(circle, #ffa60120 20%, transparent 21%);
+  background-size: 50px 50px;
+  background-color: #ffffff;
+  animation: moveBackground 10s linear infinite;
+}
