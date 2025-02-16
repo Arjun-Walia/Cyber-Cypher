@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile</title>
+  <link rel="icon" href="logo.png">
+  <link rel="stylesheet" href="profile.css">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+    }
+
+    h1, h2 {
+      color: #2c3e50;
+    }
+
+    .profile-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+      padding: 20px;
+      background-color: #EFE9D5;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-header img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-right: 20px;
+      border: 3px solid #71BBB2;
+    }
+
+    .profile-header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    .profile-header p {
+      margin: 5px 0 0;
+      color: #666;
+    }
+
+    .section {
+      background-color: #EFE9D5;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .progress-bar {
+      width: 100%;
+      background-color: #e0e0e0;
+      border-radius: 5px;
+      overflow: hidden;
+      margin: 10px 0;
+    }
+
+    .progress-bar-fill {
+      height: 20px;
+      background-color: #71BBB2;
+    }
+
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 10px;
+    }
+
+    .achievement-card {
+      background-color: #ffffff;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .achievement-card p {
+      margin: 0;
+      color: #2c3e50;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    button {
+      background-color: #71BBB2;
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #27445D;
+    }
+
+    .logout-section {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .logout-section button {
+      background-color: #e74c3c;
+    }
+
+    .logout-section button:hover {
+      background-color: #c0392b;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Profile Header -->
+    <div class="profile-header">
+      <img id="profile-pic" src="https://via.placeholder.com/100" alt="Profile Picture">
+      <div>
+        <h1 id="username">Loading...</h1>
+        <p id="bio">Fetching user data...</p>
+      </div>
+    </div>
+
+    <!-- Progress Section -->
+    <div class="section">
+      <h2>Your Progress</h2>
+      <div class="progress-bar">
+        <div class="progress-bar-fill" id="progress-fill"></div>
+      </div>
+      <p id="progress-text">0% completed</p>
+    </div>
+
+    <!-- Achievements Section -->
+    <div class="section">
+      <h2>Achievements</h2>
+      <div class="achievements-grid" id="achievements-container">
+        <p>Loading achievements...</p>
+      </div>
+    </div>
+
+    <!-- Update Profile Section -->
+    <div class="section">
+      <h2>Update Profile</h2>
+      <textarea id="update-bio" placeholder="Update your bio"></textarea>
+      <input type="text" id="update-profile-pic" placeholder="Profile Picture URL">
+      <button onclick="updateProfile()">Update Profile</button>
+    </div>
+
+    <!-- Daily Goal Section -->
+    <div class="section">
+      <h2>Set Daily Goal</h2>
+      <input type="number" id="daily-goal" placeholder="Daily Learning Goal (minutes)">
+      <button onclick="updateDailyGoal()">Save Goal</button>
+    </div>
+
+    <!-- Logout Section -->
+    <div class="logout-section">
+      <button onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <script src="profile.js"></script>
+</body>
+</html>

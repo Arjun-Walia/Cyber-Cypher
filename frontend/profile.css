@@ -1,0 +1,166 @@
+/* Global Styles */
+body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #efe9d5;
+  color: #27445d;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1,
+h2,
+h3 {
+  color: #27445d;
+}
+
+a {
+  color: #71bbb2;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Profile Header */
+.profile-header {
+  display: flex;
+  align-items: center;
+  background-color: #497d74;
+  padding: 20px;
+  border-radius: 10px;
+  color: #efe9d5;
+}
+
+.profile-header img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.profile-header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+.profile-header p {
+  margin: 5px 0 0;
+  font-size: 1.2rem;
+}
+
+/* Progress Section */
+.progress-section {
+  margin-top: 30px;
+}
+
+.progress-bar {
+  background-color: #71bbb2;
+  height: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.progress-bar-fill {
+  background-color: #27445d;
+  height: 100%;
+  width: 60%; /* Example progress */
+}
+
+/* Achievements Section */
+.achievements-section {
+  margin-top: 30px;
+}
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+}
+
+.achievement-card {
+  background-color: #71bbb2;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  color: #efe9d5;
+}
+
+.achievement-card img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+/* Music Integration */
+.music-section {
+  margin-top: 30px;
+}
+
+.music-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.music-controls button {
+  background-color: #497d74;
+  color: #efe9d5;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.music-controls button:hover {
+  background-color: #27445d;
+}
+
+/* Parental Controls */
+.parental-controls-section {
+  margin-top: 30px;
+}
+
+.parental-controls {
+  background-color: #497d74;
+  padding: 20px;
+  border-radius: 10px;
+  color: #efe9d5;
+}
+
+.parental-controls h3 {
+  margin-top: 0;
+}
+
+.parental-controls label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.parental-controls input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: none;
+}
+
+.parental-controls button {
+  background-color: #71bbb2;
+  color: #efe9d5;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.parental-controls button:hover {
+  background-color: #27445d;
+}
