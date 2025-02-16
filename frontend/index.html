@@ -3,19 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="logo.png">
+  <link rel="icon" href="images/logo.png">
   <title>Login/Signup</title>
   <style>
     body {
       font-family: 'Arial', sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #EFE9D5;
+      background-color: #ffffff; /* Keep existing background */
       color: #27445D;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      position: relative;
+      overflow: hidden; /* Important for the pseudo-element */
+    }
+
+    /*  Apply animation to a pseudo-element */
+    body::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 200%; /* Larger than the body */
+        height: 200%; /* Larger than the body */
+        background: radial-gradient(circle, #ffa60120 20%, transparent 21%);
+        background-size: 50px 50px;
+        animation: moveBackground 10s linear infinite;
+        z-index: -1; /* Behind the content */
+    }
+
+    @keyframes moveBackground {
+        0% { transform: translate(0, 0); }
+        100% { transform: translate(-50px, -50px); } /* Adjust for desired movement */
     }
 
     .container {
@@ -26,6 +47,8 @@
       width: 100%;
       max-width: 400px;
       text-align: center;
+      z-index: 1; /* Ensure container is above the background */
+      position: relative; /* For z-index */
     }
 
     h1 { color: #EFE9D5; margin-bottom: 20px; }
@@ -65,7 +88,7 @@
       <button onclick="login()">Login</button>
       <p class="toggle-form">Don't have an account? <a href="#" onclick="toggleForm('signup')">Sign Up</a></p>
     </div>
-    
+
     <div id="signup-form" style="display: none;">
       <h1>Sign Up</h1>
       <input type="text" id="signup-username" placeholder="Username" required>
