@@ -1,395 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Challenge Page</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignments</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="test-styles.css" />
-    <link rel="stylesheet" href="assignment.css" />
-    <link rel="icon" type="image/png" href="images/logo.png" />
-    <style>
-      body {
-        background-color: #efe9d5;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 1.5rem;
-        margin: 0;
-        box-sizing: border-box;
-      }
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your main styles.css -->
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body class="bg-black p-4 min-h-screen text-white">
 
-      /* Navbar Styles */
-      .navbar {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-      }
-
-      /* Home Icon */
-      .home-icon {
-        height: 3.5rem;
-        width: 3.5rem;
-        color: #ffffff;
-        padding: 0.5rem;
-        border-radius: 50%;
-        transition: background-color 0.3s ease;
-      }
-
-      .home-icon:hover {
-        background-color: #497d74;
-      }
-
-      /* Navbar Links */
-      .nav-links {
-        display: flex;
-        gap: 1.5rem;
-        margin-left: auto;
-      }
-
-      .nav-links a {
-        position: relative;
-        text-decoration: none;
-        font-size: 1.5rem;
-        font-weight: 500;
-        color: #ffffff;
-        padding-bottom: 0.25rem;
-        transition: color 0.3s ease;
-      }
-
-      .nav-links a::after {
-        content: "";
-        display: block;
-        height: 2px;
-        width: 0;
-        background-color: #ffffff;
-        transition: width 0.3s;
-      }
-
-      .nav-links a:hover::after {
-        width: 100%;
-      }
-
-      /* Search Box */
-      .search-button {
-        margin-left: auto;
-        padding-right: 20px;
-      }
-
-      .search-button input {
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        border: 2px solid #ccc;
-        padding: 0.75rem 1.25rem;
-        border-radius: 1rem;
-        width: 14rem;
-        transition: all 0.3s ease;
-      }
-
-      .search-button input:focus {
-        width: 16rem;
-        border-color: #497d74;
-        outline: none;
-      }
-
-      .search-icon {
-        position: absolute;
-        top: 0.75rem;
-        right: 1rem;
-        color: #555;
-        width: 1.5rem;
-        height: 1.5rem;
-      }
-
-      /* Profile Button */
-      .profile-button {
-        display: flex;
-        align-items: center;
-        padding: 0.5rem;
-        border-radius: 1rem;
-        background-color: #ffffff;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s ease;
-      }
-
-      .profile-button:hover {
-        transform: scale(1.05);
-      }
-
-      .profile-icon {
-        color: #497d74;
-        font-size: 1.5rem;
-        padding: 0.5rem;
-      }
-      /* Main Content Styling */
-      .main-content {
-        background-color: #f4f1e1;
-        margin: 1rem auto;
-        padding: 3rem;
-        border-radius: 1rem;
-        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
-        width: 90%;
-        min-height: 70vh;
-        text-align: center;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-        color: #333;
-        transition: all 0.3s ease;
-      }
-
-      /* Responsive adjustments */
-      @media (max-width: 768px) {
-        .main-content {
-          width: 90%;
-          padding: 2rem;
-          font-size: 1.2rem;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .main-content {
-          width: 95%;
-          padding: 1.5rem;
-          font-size: 1rem;
-        }
-      }
-
-      .assignment-container {
-        background-color: #f4f1e1; /* Match main-content color */
-        padding: 2rem;
-        border-radius: 12px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        width: 80%; /* Control the width */
-        text-align: center;
-      }
-
-      .assignment-grid {
-        display: grid;
-        grid-template-columns: repeat(
-          auto-fit,
-          minmax(250px, 1fr)
-        ); /* Responsive Grid */
-        gap: 20px;
-        width: 100%;
-        margin-top: 10px;
-      }
-
-      .assignment-tile {
-        background-color: #fff;
-        padding: 15px;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        text-align: center;
-        font-family: "Lexend", sans-serif;
-        transition: transform 0.3s ease;
-        overflow-wrap: break-word; /* Important for long words */
-      }
-
-      .assignment-tile:hover {
-        transform: scale(1.05);
-      }
-
-      .download-button {
-        background-color: #497d74;
-        color: white;
-        padding: 10px 15px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-size: 1rem;
-        display: inline-block;
-        margin-top: 10px;
-        transition: background 0.3s;
-      }
-
-      .download-button:hover {
-        background-color: #365d5a;
-      }
-    </style>
-  </head>
-  <body class="bg-gray-100 flex flex-col items-center p-6 moving-background">
     <!-- Navbar -->
-    <nav class="bg-[#497D74] p-4 rounded-lg w-full">
-      <div class="container mx-auto flex items-center justify-between">
-        <a href="main.html">
-          <img
-            src="images/logoMain.png"
-            alt="Home"
-            class="h-12 w-12 text-white p-2 rounded-full"
-          />
-        </a>
+    <nav class="p-4 rounded-lg w-full">
+        <div class="container mx-auto flex items-center justify-between">
+            <a href="main.html" id="logo-link">
+                <img src="images/logo2.png" alt="Home" class="h-12 w-15 text-white p-2" id="logo-image">
+            </a>
 
-        <div class="hidden md:flex gap-6 text-white">
-          <a href="main.html" class="hover:underline text-lg">Home</a>
-          <a href="tests.html" class="hover:underline text-lg">Tests</a>
-          <a href="classes.html" class="hover:underline text-lg">Classes</a>
-          <a href="assignments.html" class="hover:underline text-lg"
-            >Assignments</a
-          >
-        </div>
+            <!-- Hamburger Menu (Mobile) -->
+            <button class="md:hidden text-white focus:outline-none" id="hamburger-assignments" aria-label="Toggle menu">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path id="menu-icon-open-assignments" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    <path id="menu-icon-close-assignments" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" class="hidden"></path>
+                </svg>
+            </button>
 
-        <div class="flex items-center gap-4">
-          <div class="relative">
-            <input
-              placeholder="Search..."
-              class="shadow-lg focus:border-2 border-gray-300 px-5 py-2 rounded-xl w-48 transition-all focus:w-64 outline-none"
-              name="search"
-              type="search"
-            />
-            <svg
-              class="size-5 absolute top-2.5 right-3 text-gray-500"
-              stroke="currentColor"
-              stroke-width="1.5"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-                stroke-linejoin="round"
-                stroke-linecap="round"
-              ></path>
-            </svg>
-          </div>
-
-          <a href="profile.html">
-            <div
-              class="flex items-center bg-white px-3 py-2 rounded-full shadow-md"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-5 h-5 text-[#497D74]"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
+            <!-- Nav Links (Desktop) -->
+            <div class="hidden md:flex gap-6">
+                <a href="main.html" class="hover:underline text-lg Rubik-SemiBold">Home</a>
+                <a href="tests.html" class="hover:underline text-lg Rubik-SemiBold">Tests</a>
+                <a href="classes.html" class="hover:underline text-lg Rubik-SemiBold">Classes</a>
+                <a href="assignments.html" class="hover:underline text-lg Rubik-SemiBold">Assignments</a>
             </div>
-          </a>
-        </div>
 
-        <!-- Mobile Menu Button -->
-        <button
-          class="md:hidden ml-auto"
-          id="menu-toggle"
-          aria-label="Toggle menu"
-        >
-          <svg
-            class="w-8 h-8 text-white"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-          >
-            <path
-              id="menu-icon-open"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-            <path
-              id="menu-icon-close"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M6 18L18 6M6 6l12 12"
-              class="hidden"
-            />
-          </svg>
-        </button>
-      </div>
+            <!-- Search Bar and Profile (Desktop) -->
+            <div class="flex items-center gap-4">
+                <div class="relative hidden md:block" id="search-container">
+                    <input placeholder="Search..." class="shadow-lg focus:border-2  px-5 py-2 rounded-xl w-48 transition-all focus:w-64 outline-none" name="search" type="search" id="search-input"/>
+                    <svg class="size-5 absolute top-2.5 left-3 text-gray-500" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" stroke-linejoin="round" stroke-linecap="round"></path>
+                    </svg>
+                </div>
 
-      <!-- Mobile Menu -->
-      <div
-        class="hidden md:hidden w-full bg-[#497D74] text-white flex-col items-center py-4 space-y-3"
-        id="mobile-menu"
-      >
-        <a href="main.html" class="block text-xl">Home</a>
-        <a href="tests.html" class="block text-xl">Tests</a>
-        <a href="classes.html" class="block text-xl">Classes</a>
-        <a href="assignments.html" class="block text-xl">Assignments</a>
-        <div class="relative w-full px-4">
-          <input
-            placeholder="Search..."
-            class="shadow-lg focus:border-2 border-gray-300 px-5 py-2 rounded-xl w-full transition-all focus:outline-none"
-            name="search"
-            type="search"
-          />
-          <svg
-            class="size-5 absolute top-3 right-7 text-gray-500"
-            stroke="currentColor"
-            stroke-width="1.5"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-              stroke-linejoin="round"
-              stroke-linecap="round"
-            ></path>
-          </svg>
+                <!-- Profile Link and Image - Modified -->
+                <a href="profile.html" id="profile-link" class="hover:scale-110 transition-transform">
+                    <img id="navbar-profile-pic" src="https://via.placeholder.com/150" alt="Profile Picture" class="w-8 h-8 rounded-full object-cover">
+                </a>
+            </div>
         </div>
-        <a href="profile.html" class="block text-xl">Profile</a>
-      </div>
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden w-full  text-white flex-col items-center py-4 space-y-3" id="mobile-menu-assignments">
+            <a href="main.html" class="block text-xl">Home</a>
+            <a href="tests.html" class="block text-xl">Tests</a>
+            <a href="classes.html" class="block text-xl">Classes</a>
+            <a href="assignments.html" class="block text-xl">Assignments</a>
+            <div class="relative w-full px-4">
+                <input placeholder="Search..." class="shadow-lg focus:border-2 border-gray-300 px-5 py-2 rounded-xl w-full transition-all focus:outline-none" name="search" type="search" />
+                <svg class="size-5 absolute top-3 right-7 text-gray-500" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" stroke-linejoin="round" stroke-linecap="round"></path>
+                </svg>
+            </div>
+        </div>
     </nav>
 
-    <div class="assignment-container w-full mt-10 max-w-screen-xl mx-auto">
-      <h2 class="assignment-title text-4xl font-semibold mb-5">
-        Assignments Pave The Way To Mastery - One Task At A Time
-      </h2>
+    <div class="container mx-auto mt-10 p-6 bg-gray-800 bg-opacity-20 rounded-lg shadow-lg max-w-screen-xl">
+        <h2 class="text-4xl font-semibold mb-5 text-center Rubik-Medium">Assignments Pave The Way To Mastery - One Task At A Time</h2>
 
-      <div class="assignment-grid">
-        <div class="assignment-tile text-2xl flex flex-col justify-between">
-          Assignment 1
-          <a href="#" class="download-button mt-auto">Download</a>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div class="bg-gray-800 p-4 rounded-lg shadow-md border border-gray-700">
+                <h3 class="text-xl font-semibold mb-2 Rubik-Medium">Assignment 1</h3>
+                <p class="text-gray-400 mb-4">This assignment covers the concepts introduced in the first two lectures on Kinematics.  You will be solving problems related to displacement, velocity, and acceleration.</p>
+                <a href="assignments/phyassign1.pdf" class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50">Download</a>
+            </div>
+            <div class="bg-gray-800 p-4 rounded-lg shadow-md border border-gray-700">
+                <h3 class="text-xl font-semibold mb-2 Rubik-Medium">Assignment 2</h3>
+                <p class="text-gray-400 mb-4">This assignment focuses on Newton's Laws of Motion.  You will be analyzing forces and their effects on the motion of objects.</p>
+                <a href="assignments/chemassign1.pdf" class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50">Download</a>
+            </div>
+            <div class="bg-gray-800 p-4 rounded-lg shadow-md border border-gray-700">
+                <h3 class="text-xl font-semibold mb-2 Rubik-Medium">Assignment 3</h3>
+                <p class="text-gray-400 mb-4">This assignment deals with algebraic equations and inequalities.  Practice your skills in solving various types of equations.</p>
+                <a href="#" class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50">Download</a>
+            </div>
+            <div class="bg-gray-800 p-4 rounded-lg shadow-md border border-gray-700">
+                <h3 class="text-xl font-semibold mb-2 Rubik-Medium">Assignment 4</h3>
+                <p class="text-gray-400 mb-4">This assignment explores the fundamentals of chemical bonding and atomic structure.  Review Lewis structures and VSEPR theory.</p>
+                <a href="assignments/chemassign2.pdf" class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50">Download</a>
+            </div>
         </div>
-        <div class="assignment-tile text-2xl flex flex-col justify-between">
-          Assignment 2
-          <a href="#" class="download-button mt-auto">Download</a>
-        </div>
-        <div class="assignment-tile text-2xl flex flex-col justify-between">
-          Assignment 3
-          <a href="#" class="download-button mt-auto">Download</a>
-        </div>
-        <div class="assignment-tile text-2xl flex flex-col justify-between">
-          Assignment 4
-          <a href="#" class="download-button mt-auto">Download</a>
-        </div>
-      </div>
 
-      <div class="fixed bottom-4 right-4">
-        <div class="flex gap-2">
-          <a href="upload.html" class="btn btn-success">Upload</a>
-          <a href="tests.html" class="btn btn-primary">Take A Quiz</a>
+        <div class="fixed bottom-4 right-4">
+            <div class="flex gap-2">
+                <a href="upload.html" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">Upload</a>
+                <a href="tests.html" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Take A Quiz</a>
+            </div>
         </div>
-      </div>
     </div>
-
-    <!-- JavaScript for Menu Toggle -->
-    <script>
-      const menuToggle = document.getElementById("menu-toggle");
-      const mobileMenu = document.getElementById("mobile-menu");
-      const menuIconOpen = document.getElementById("menu-icon-open");
-      const menuIconClose = document.getElementById("menu-icon-close");
-
-      menuToggle.addEventListener("click", () => {
-        mobileMenu.classList.toggle("hidden");
-        menuIconOpen.classList.toggle("hidden");
-        menuIconClose.classList.toggle("hidden");
-      });
-    </script>
-  </body>
+    <script src="script.js"></script>
+</body>
 </html>

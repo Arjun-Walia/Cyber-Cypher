@@ -3,143 +3,315 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="images/logo.png" />
     <title>Login/Signup</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="images/logo.png" />
     <style>
+      /* CSS specific to index.html, and adapted from the provided template */
+      :root {
+        /* Dark Mode Colors (Keep these consistent) */
+        --bg-color: #121212;
+        --text-color: #ffffff;
+        --accent-color: #ffa503;
+        --form-bg-color: #171717;
+        --form-button-bg: #252525;
+        --form-button-hover-bg: #000000;
+        --form-button-text: #ffffff;
+        --form-input-bg: #171717;
+        --form-input-text: #d3d3d3;
+        --form-input-icon: #ffffff;
+      }
+
       body {
-        font-family: "Arial", sans-serif;
+        font-family: "Lexend", sans-serif;
         margin: 0;
         padding: 0;
-        background-color: #ffffff; /* Keep existing background */
-        color: #27445d;
+        background-color: var(--bg-color);
+        color: var(--text-color);
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100vh;
-        position: relative;
-        overflow: hidden; /* Important for the pseudo-element */
+        overflow: hidden; /* Prevent horizontal scroll */
       }
 
-      /*  Apply animation to a pseudo-element */
-      body::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 200%; /* Larger than the body */
-        height: 200%; /* Larger than the body */
-        background: radial-gradient(circle, #ffa60120 20%, transparent 21%);
-        background-size: 50px 50px;
-        animation: moveBackground 10s linear infinite;
-        z-index: -1; /* Behind the content */
-      }
-
-      @keyframes moveBackground {
-        0% {
-          transform: translate(0, 0);
-        }
-        100% {
-          transform: translate(-50px, -50px);
-        } /* Adjust for desired movement */
-      }
-
-      .container {
-        background-color: #497d74;
+      /* --- Login/Signup Form Styles --- */
+      /* Changed from .container to .auth-container */
+      .auth-container {
+        background-color: var(--form-bg-color);
         padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        width: 100%;
+        border-radius: 25px;
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+        width: 32%;
         max-width: 400px;
         text-align: center;
-        z-index: 1; /* Ensure container is above the background */
-        position: relative; /* For z-index */
+        z-index: 1;
+        position: relative;
       }
 
-      h1 {
-        color: #efe9d5;
-        margin-bottom: 20px;
+      /* Make the form responsive */
+      @media (max-width: 600px) {
+        /* Adjust breakpoint as needed */
+        .container {
+          padding: 20px; /* Reduce padding on smaller screens */
+        }
+        .form {
+          padding-left: 1em; /* Reduce padding */
+          padding-right: 1em;
+        }
       }
 
-      input {
+      .form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding-left: 2em;
+        padding-right: 2em;
+        padding-bottom: 0.4em;
+        border-radius: 25px;
+        transition: 0.4s ease-in-out;
+      }
+
+      #heading {
+        text-align: center;
+        margin: 2em;
+        color: var(--text-color);
+        font-size: 1.2em;
+        font-family: "Rubik", sans-serif;
+        font-weight: 500;
+      }
+
+      .field {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5em;
+        border-radius: 25px;
+        padding: 0.6em;
+        border: none;
+        outline: none;
+        color: var(--form-input-text);
+        background-color: var(--form-input-bg);
+        box-shadow: inset 2px 5px 10px rgba(0, 0, 0, 0.3); /* Darker shadow */
+      }
+
+      .input-icon {
+        height: 1.3em;
+        width: 1.3em;
+        fill: var(--form-input-icon);
+      }
+
+      .input-field {
+        background: none;
+        border: none;
+        outline: none;
         width: 100%;
-        padding: 10px;
-        margin: 10px 0;
-        border: none;
-        border-radius: 5px;
-        font-size: 1rem;
+        color: var(--form-input-text);
+        font-family: "Lexend", sans-serif;
       }
 
-      button {
-        background-color: #71bbb2;
-        color: #efe9d5;
-        border: none;
-        padding: 10px 20px;
+      .form .btn {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        margin-top: 2.5em;
+      }
+
+      .button1,
+      .button2,
+      .button3 {
+        padding: 0.5em;
         border-radius: 5px;
-        font-size: 1rem;
+        border: none;
+        outline: none;
+        transition: 0.4s ease-in-out;
+        background-color: var(--form-button-bg);
+        color: var(--form-button-text);
+        font-family: "Rubik", sans-serif;
+        font-weight: 600;
         cursor: pointer;
-        margin-top: 10px;
+      }
+      .button1 {
+        padding-left: 1.1em;
+        padding-right: 1.1em;
+        margin-right: 0.5em;
       }
 
-      button:hover {
-        background-color: #27445d;
+      .button2 {
+        padding-left: 2.3em;
+        padding-right: 2.3em;
       }
+
+      .button1:hover,
+      .button2:hover {
+        background-color: var(--form-button-hover-bg);
+        color: white;
+      }
+
+      .button3 {
+        margin-bottom: 3em;
+        background-color: #8b0000; /* Dark red for "Forgot Password" */
+      }
+
+      .button3:hover {
+        background-color: #600000; /* Even darker red on hover */
+      }
+
       .toggle-form {
-        color: #efe9d5;
+        color: var(--text-color);
         margin-top: 15px;
+        font-family: "Lexend", sans-serif;
+        text-align: center;
       }
+
       .toggle-form a {
-        color: #71bbb2;
+        color: var(--accent-color);
         text-decoration: none;
+        font-weight: 600;
       }
+
       .toggle-form a:hover {
         text-decoration: underline;
       }
     </style>
   </head>
   <body>
-    <div class="container">
-      <div id="login-form">
-        <h1>Login</h1>
-        <input
-          type="text"
-          id="login-username"
-          placeholder="Username"
-          required
-        />
-        <input
-          type="password"
-          id="login-password"
-          placeholder="Password"
-          required
-        />
-        <button onclick="login()">Login</button>
-        <p class="toggle-form">
-          Don't have an account?
-          <a href="#" onclick="toggleForm('signup')">Sign Up</a>
-        </p>
-      </div>
+    <div class="auth-container">
+      <form class="form" id="login-form">
+        <p id="heading">Login</p>
+        <div class="field">
+          <svg
+            class="input-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M13.106 7.222c0-2.967-2.249-5.032-5.482-5.032-3.35 0-5.646 2.318-5.646 5.702 0 3.493 2.235 5.708 5.762 5.708.862 0 1.689-.123 2.304-.335v-.862c-.43.199-1.354.328-2.29.328-2.926 0-4.813-1.88-4.813-4.798 0-2.844 1.921-4.881 4.594-4.881 2.735 0 4.608 1.688 4.608 4.156 0 1.682-.554 2.769-1.416 2.769-.492 0-.772-.28-.772-.76V5.206H8.923v.834h-.11c-.266-.595-.881-.964-1.6-.964-1.4 0-2.378 1.162-2.378 2.823 0 1.737.957 2.906 2.379 2.906.8 0 1.415-.39 1.709-1.087h.11c.081.67.703 1.148 1.503 1.148 1.572 0 2.57-1.415 2.57-3.643zm-7.177.704c0-1.197.54-1.907 1.456-1.907.93 0 1.524.738 1.524 1.907S8.308 9.84 7.371 9.84c-.895 0-1.442-.725-1.442-1.914z"
+            ></path>
+          </svg>
+          <input
+            autocomplete="off"
+            placeholder="Username"
+            class="input-field"
+            type="text"
+            id="login-username"
+          />
+        </div>
+        <div class="field">
+          <svg
+            class="input-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"
+            ></path>
+          </svg>
+          <input
+            placeholder="Password"
+            class="input-field"
+            type="password"
+            id="login-password"
+          />
+        </div>
+        <div class="btn">
+          <button class="button1" type="button" onclick="login(event)">
+            Login
+          </button>
+          <button class="button2" type="button" onclick="toggleForm('signup')">
+            Sign Up
+          </button>
+        </div>
+        <button class="button3" type="button">Forgot Password</button>
+      </form>
 
-      <div id="signup-form" style="display: none">
-        <h1>Sign Up</h1>
-        <input
-          type="text"
-          id="signup-username"
-          placeholder="Username"
-          required
-        />
-        <input type="email" id="signup-email" placeholder="Email" required />
-        <input
-          type="password"
-          id="signup-password"
-          placeholder="Password"
-          required
-        />
-        <button onclick="signup()">Sign Up</button>
-        <p class="toggle-form">
-          Already have an account?
-          <a href="#" onclick="toggleForm('login')">Login</a>
-        </p>
-      </div>
+      <form class="form" id="signup-form" style="display: none">
+        <p id="heading">Sign Up</p>
+        <div class="field">
+          <svg
+            class="input-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M13.106 7.222c0-2.967-2.249-5.032-5.482-5.032-3.35 0-5.646 2.318-5.646 5.702 0 3.493 2.235 5.708 5.762 5.708.862 0 1.689-.123 2.304-.335v-.862c-.43.199-1.354.328-2.29.328-2.926 0-4.813-1.88-4.813-4.798 0-2.844 1.921-4.881 4.594-4.881 2.735 0 4.608 1.688 4.608 4.156 0 1.682-.554 2.769-1.416 2.769-.492 0-.772-.28-.772-.76V5.206H8.923v.834h-.11c-.266-.595-.881-.964-1.6-.964-1.4 0-2.378 1.162-2.378 2.823 0 1.737.957 2.906 2.379 2.906.8 0 1.415-.39 1.709-1.087h.11c.081.67.703 1.148 1.503 1.148 1.572 0 2.57-1.415 2.57-3.643zm-7.177.704c0-1.197.54-1.907 1.456-1.907.93 0 1.524.738 1.524 1.907S8.308 9.84 7.371 9.84c-.895 0-1.442-.725-1.442-1.914z"
+            ></path>
+          </svg>
+          <input
+            autocomplete="off"
+            placeholder="Username"
+            class="input-field"
+            type="text"
+            id="signup-username"
+          />
+        </div>
+        <div class="field">
+          <svg
+            class="input-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.723Z"
+            />
+          </svg>
+          <input
+            autocomplete="off"
+            placeholder="Email"
+            class="input-field"
+            type="email"
+            id="signup-email"
+          />
+        </div>
+        <div class="field">
+          <svg
+            class="input-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"
+            ></path>
+          </svg>
+          <input
+            placeholder="Password"
+            class="input-field"
+            type="password"
+            id="signup-password"
+          />
+        </div>
+        <div class="btn">
+          <button class="button2" type="button" onclick="signup(event)">
+            Sign Up
+          </button>
+          <button class="button1" type="button" onclick="toggleForm('login')">
+            Login
+          </button>
+        </div>
+      </form>
     </div>
 
     <script src="index.js"></script>
