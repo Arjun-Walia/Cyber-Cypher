@@ -1,382 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personalized Learning</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="icon" type="image/png" href="images/logo.png" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css"
-      rel="stylesheet"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
-    <style>
-      body {
-        font-family: "Lexend", sans-serif;
-        margin: 0;
-        padding: 0;
-      }
-      .fade-in {
-        opacity: 0;
-        animation: fadeIn 1s ease-in forwards;
-      }
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <!-- Font Awesome (Optional - for navbar icons if you want them) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body class="p-4 min-h-screen bg-black text-white">
 
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
-
-      /* Calendar */
-      #calendar-container {
-        background: #eae2cf;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        width: 90%;
-        max-width: 800px;
-        margin: 20px auto;
-      }
-
-      /* Notification Card */
-      .card {
-        width: 100%;
-        max-width: 290px;
-        height: 70px;
-        background: #353535;
-        border-radius: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: left;
-        backdrop-filter: blur(10px);
-        transition: 0.5s ease-in-out;
-      }
-
-      .card:hover {
-        cursor: pointer;
-        transform: scale(1.05);
-      }
-
-      .img {
-        width: 50px;
-        height: 50px;
-        margin-left: 10px;
-        border-radius: 10px;
-        background: linear-gradient(#d7cfcf, #9198e5);
-      }
-
-      .card:hover > .img {
-        transition: 0.5s ease-in-out;
-        background: linear-gradient(#9198e5, #712020);
-      }
-
-      .textBox {
-        width: calc(100% - 90px);
-        margin-left: 10px;
-        color: white;
-        font-family: "Poppins", sans-serif;
-      }
-
-      .textContent {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-
-      .span {
-        font-size: 10px;
-      }
-
-      .h1 {
-        font-size: 16px;
-        font-weight: bold;
-      }
-
-      .p {
-        font-size: 12px;
-        font-weight: lighter;
-      }
-
-      /* Background Animation */
-      @keyframes moveBackground {
-        0% {
-          background-position: 0 0;
-        }
-        100% {
-          background-position: 100px 100px;
-        }
-      }
-
-      .moving-background {
-        background: radial-gradient(circle, #ffa60120 20%, transparent 21%);
-        background-size: 50px 50px;
-        background-color: #ffffff;
-        animation: moveBackground 10s linear infinite;
-      }
-      /* Rectangle styles */
-      .rectangle-large {
-        width: 30vw;
-        height: 40vh;
-        background-color: #5f857e;
-        margin-top: 5vh;
-      }
-      .rectangle-small {
-        width: 30vw;
-        height: 5vh;
-        background-color: #eae2cf;
-        margin-top: 1vh;
-      }
-      .rectangle-gray {
-        width: 30vw;
-        height: 5vh;
-        background-color: #d1d1d1;
-        margin-top: 1vh;
-      }
-    </style>
-  </head>
-  <body class="bg-white p-4 min-h-screen moving-background">
-    <!-- Changed h-screen to min-h-screen -->
     <!-- Navbar -->
-    <nav class="bg-[#4a7b72] p-4 rounded-lg w-full">
-      <div class="container mx-auto flex items-center justify-between">
-        <a href="main.html">
-          <img
-            src="images/logoMain.png"
-            alt="Home"
-            class="h-12 w-12 text-white p-2 rounded-full"
-          />
-        </a>
+    <nav class="p-4 rounded-lg w-full">
+        <div class="container mx-auto flex items-center justify-between">
+            <a href="main.html" id="logo-link">
+                <img src="images/logo2.png" alt="Home" class="text-white p-2 h-12 w-15" id="logo-image">  <!-- Removed rounded-full -->
+            </a>
 
-        <!-- Hamburger Menu (Mobile) -->
-        <button
-          class="md:hidden text-white focus:outline-none"
-          id="hamburger-home"
-          aria-label="Toggle menu"
-        >
-          <svg
-            class="w-8 h-8"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              id="menu-icon-open-home"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            ></path>
-            <path
-              id="menu-icon-close-home"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M6 18L18 6M6 6l12 12"
-              class="hidden"
-            ></path>
-          </svg>
-        </button>
+            <!-- Hamburger Menu (Mobile) -->
+            <button class="md:hidden text-white focus:outline-none" id="hamburger-home" aria-label="Toggle menu">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path id="menu-icon-open-home" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    <path id="menu-icon-close-home" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" class="hidden"></path>
+                </svg>
+            </button>
 
-        <!-- Nav Links (Desktop) -->
-        <div class="hidden md:flex gap-6 text-white">
-          <a href="main.html" class="hover:underline text-lg">Home</a>
-          <a href="tests.html" class="hover:underline text-lg">Tests</a>
-          <a href="classes.html" class="hover:underline text-lg">Classes</a>
-          <a href="assignments.html" class="hover:underline text-lg"
-            >Assignments</a
-          >
-        </div>
-
-        <!-- Search Bar and Profile (Desktop) -->
-        <div class="flex items-center gap-4">
-          <div class="relative hidden md:block">
-            <input
-              placeholder="Search..."
-              class="shadow-lg focus:border-2 border-gray-300 px-5 py-2 rounded-xl w-48 transition-all focus:w-64 outline-none"
-              name="search"
-              type="search"
-            />
-            <svg
-              class="size-5 absolute top-2.5 right-3 text-gray-500"
-              stroke="currentColor"
-              stroke-width="1.5"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-                stroke-linejoin="round"
-                stroke-linecap="round"
-              ></path>
-            </svg>
-          </div>
-          <a href="profile.html" class="hidden md:block">
-            <div
-              class="flex items-center bg-white px-3 py-2 rounded-full shadow-md"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-5 h-5 text-[#4a7b72]"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
+            <!-- Nav Links (Desktop) -->
+            <div class="hidden md:flex gap-6">
+                <a href="main.html" class="hover:underline text-lg Rubik-SemiBold">Home</a>
+                <a href="tests.html" class="hover:underline text-lg Rubik-SemiBold">Tests</a>
+                <a href="classes.html" class="hover:underline text-lg Rubik-SemiBold">Classes</a>
+                <a href="assignments.html" class="hover:underline text-lg Rubik-SemiBold">Assignments</a>
             </div>
-          </a>
+
+            <!-- Search Bar and Profile (Desktop) -->
+            <div class="flex items-center gap-4">
+                <div class="relative hidden md:block" id="search-container">
+                    <input placeholder="Search..." class="shadow-lg focus:border-2  px-5 py-2 rounded-xl w-48 transition-all focus:w-64 outline-none" name="search" type="search" id="search-input"/>
+                    <svg class="size-5 absolute top-2.5 left-3 text-gray-500" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" stroke-linejoin="round" stroke-linecap="round"></path>
+                    </svg>
+                </div>
+
+                <a href="profile.html" id="profile-link">
+                    <div class="flex items-center bg-white px-3 py-2 rounded-full shadow-md">
+                        <img id="navbar-profile-pic" src="https://via.placeholder.com/150" alt="Profile Picture" class="w-8 h-8 rounded-full">
+                    </div>
+                </a>
+            </div>
         </div>
-      </div>
-      <!-- Mobile Menu -->
-      <div
-        class="hidden md:hidden w-full bg-[#4a7b72] text-white flex-col items-center py-4 space-y-3"
-        id="mobile-menu-home"
-      >
-        <a href="main.html" class="block text-xl">Home</a>
-        <a href="tests.html" class="block text-xl">Tests</a>
-        <a href="classes.html" class="block text-xl">Classes</a>
-        <a href="assignments.html" class="block text-xl">Assignments</a>
-        <div class="relative w-full px-4">
-          <input
-            placeholder="Search..."
-            class="shadow-lg focus:border-2 border-gray-300 px-5 py-2 rounded-xl w-full transition-all focus:outline-none"
-            name="search"
-            type="search"
-          />
-          <svg
-            class="size-5 absolute top-3 right-7 text-gray-500"
-            stroke="currentColor"
-            stroke-width="1.5"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-              stroke-linejoin="round"
-              stroke-linecap="round"
-            ></path>
-          </svg>
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden w-full  text-white flex-col items-center py-4 space-y-3" id="mobile-menu-home">
+            <a href="main.html" class="block text-xl">Home</a>
+            <a href="tests.html" class="block text-xl">Tests</a>
+            <a href="classes.html" class="block text-xl">Classes</a>
+            <a href="assignments.html" class="block text-xl">Assignments</a>
+            <div class="relative w-full px-4">
+                <input placeholder="Search..." class="shadow-lg focus:border-2 border-gray-300 px-5 py-2 rounded-xl w-full transition-all focus:outline-none" name="search" type="search" />
+                <svg class="size-5 absolute top-3 right-7 text-gray-500" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" stroke-linejoin="round" stroke-linecap="round"></path>
+                </svg>
+            </div>
         </div>
-        <a href="profile.html" class="block text-xl">Profile</a>
-      </div>
     </nav>
 
-    <!-- Hero Section -->
-    <div
-      class="container mx-auto mt-10 px-5 lg:px-20 flex flex-col md:flex-row items-center"
-    >
-      <div class="w-full md:w-1/2 text-left fade-in">
-        <h1 class="text-5xl md:text-7xl font-semibold">Welcome,</h1>
-        <!-- Responsive text size -->
-        <p
-          id="changing-text"
-          class="text-3xl md:text-5xl text-gray-600 transition-all duration-1000 ease-in-out"
-        >
-          To personalised learning!
-        </p>
-        <!-- Responsive text size -->
-      </div>
-      <div
-        class="w-full md:w-1/2 flex flex-col items-center space-y-4 mt-8 md:mt-0"
-      >
-        <!-- Added margin-top for mobile -->
-        <div
-          id="calendar-container"
-          class="w-full max-w-[300px] md:max-w-[400px]"
-        >
-          <!-- Responsive max-width -->
-          <div id="calendar" class="w-full"></div>
-        </div>
-        <div
-          class="rectangle-small w-full max-w-[300px] md:max-w-[650px]"
-        ></div>
-        <!-- Responsive max-width -->
-        <div
-          class="rectangle-small w-full max-w-[300px] md:max-w-[650px]"
-        ></div>
-        <!-- Responsive max-width -->
-        <div class="rectangle-gray w-full max-w-[300px] md:max-w-[650px]"></div>
-        <!-- Responsive max-width -->
-      </div>
+   <!-- Hero Section -->
+<div class="container mx-auto mt-10 px-5 lg:px-20 flex flex-col md:flex-row items-center">
+    <div class="w-full md:w-1/2 text-left fade-in">
+        <h1 class="text-5xl md:text-7xl font-semibold Rubik-Medium">Welcome,</h1>
+        <p id="changing-text" class="text-3xl md:text-5xl transition-all duration-1000 ease-in-out Rubik-Regular">To personalised learning!</p>
     </div>
+    <div class="w-full md:w-1/2 flex justify-center mt-8 md:mt-0">
+        <div id="calendar-container" class="w-full max-w-lg">
+            <div id="calendar" class="w-full"></div>
+        </div>
+    </div>
+</div>
 
     <!-- Notification Section -->
-    <div class="container mx-auto mt-10 px-5 lg:px-20 flex justify-center">
-      <!-- Centered the notification -->
-      <div class="card">
-        <div class="img"></div>
-        <div class="textBox">
-          <div class="textContent">
-            <span class="span">New Notification</span>
-          </div>
-          <h1 class="h1">Upcoming Test</h1>
-          <p class="p">You have a test scheduled tomorrow at 10 AM.</p>
+     <div class="container mx-auto mt-10 px-5 lg:px-20 flex justify-center">
+        <div class="card">
+            <div class="img"></div>
+            <div class="textBox">
+                <div class="textContent">
+                    <span class="span">New Notification</span>
+                </div>
+                <p class="h1">Upcoming Test</p>
+                <p class="p">You have a test scheduled tomorrow at 10 AM.</p>
+            </div>
         </div>
-      </div>
     </div>
 
-    <script>
-      // Hamburger Menu Toggle (Home Page)
-      const hamburgerHome = document.getElementById("hamburger-home");
-      const navLinksHome = document.getElementById("mobile-menu-home");
-      const menuIconOpenHome = document.getElementById("menu-icon-open-home");
-      const menuIconCloseHome = document.getElementById("menu-icon-close-home");
-
-      hamburgerHome.addEventListener("click", () => {
-        navLinksHome.classList.toggle("hidden"); // Use 'hidden' for Tailwind
-        menuIconOpenHome.classList.toggle("hidden");
-        menuIconCloseHome.classList.toggle("hidden");
-      });
-
-      // Changing Text
-      const changingText = document.getElementById("changing-text");
-      const texts = [
-        "To personalised learning!",
-        "Let's get started.",
-        "Explore your courses.",
-      ];
-      let textIndex = 0;
-
-      setInterval(() => {
-        changingText.classList.add("opacity-0"); // Fade out
-        setTimeout(() => {
-          textIndex = (textIndex + 1) % texts.length;
-          changingText.textContent = texts[textIndex];
-          changingText.classList.remove("opacity-0"); // Fade in
-        }, 1000);
-      }, 4000);
-      document.addEventListener("DOMContentLoaded", function () {
-        var calendarEl = document.getElementById("calendar");
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: "dayGridMonth",
-          events: [
-            {
-              title: "Math Test",
-              start: "2023-12-12", // Replace with your actual event dates
-              end: "2023-12-12",
-            },
-          ],
-        });
-        calendar.render();
-      });
-    </script>
-  </body>
+    <script src="script.js"></script>
+</body>
 </html>
