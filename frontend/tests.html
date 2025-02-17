@@ -1,239 +1,287 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tests</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="test-styles.css" />
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="icon" type="image/png" href="images/logo.png" />
-  </head>
-  <body class="bg-gray-100 flex flex-col items-center p-6 moving-background">
-    <!-- Navbar -->
-    <nav class="bg-[#497D74] p-4 rounded-lg w-full">
-      <div class="container mx-auto flex items-center justify-between">
-        <a href="main.html">
-          <img
-            src="images/logoMain.png"
-            alt="Home"
-            class="h-12 w-12 text-white p-2 rounded-full"
-          />
-        </a>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="test-styles.css"> <!-- Keep this for now, but it should be mostly empty -->
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your main styles.css -->
+    <link rel="icon" type="image/png" href="/assets/logo.png">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- MathJax (REQUIRED for math rendering) -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-        <div class="hidden md:flex gap-6 text-white">
-          <a href="main.html" class="hover:underline text-lg">Home</a>
-          <a href="tests.html" class="hover:underline text-lg">Tests</a>
-          <a href="classes.html" class="hover:underline text-lg">Classes</a>
-          <a href="assignments.html" class="hover:underline text-lg"
-            >Assignments</a
-          >
-        </div>
+    <style>
+        /* Style for the active tab */
+        .active-tab {
+            border-bottom: 3px solid var(--accent-color); /* Orange underline */
+            padding-bottom: 0.5rem; /* Space between text and underline */
+        }
+    </style>
+</head>
+<body class="p-4 min-h-screen bg-black text-white">
 
-        <div class="flex items-center gap-4">
-          <div class="relative">
-            <input
-              placeholder="Search..."
-              class="shadow-lg focus:border-2 border-gray-300 px-5 py-2 rounded-xl w-48 transition-all focus:w-64 outline-none"
-              name="search"
-              type="search"
-            />
-            <svg
-              class="size-5 absolute top-2.5 right-3 text-gray-500"
-              stroke="currentColor"
-              stroke-width="1.5"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-                stroke-linejoin="round"
-                stroke-linecap="round"
-              ></path>
-            </svg>
-          </div>
+    <!-- Navbar (IDENTICAL to main.html) -->
+    <nav class="p-4 rounded-lg w-full">
+        <div class="container mx-auto flex items-center justify-between">
+            <a href="main.html" id="logo-link">
+                <img src="images/logo2.png" alt="Home" class="h-12 w-15 text-white p-2" id="logo-image">
+            </a>
 
-          <a href="profile.html">
-            <div
-              class="flex items-center bg-white px-3 py-2 rounded-full shadow-md"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-5 h-5 text-[#497D74]"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
+            <!-- Hamburger Menu (Mobile) -->
+            <button class="md:hidden text-white focus:outline-none" id="hamburger-assignments" aria-label="Toggle menu">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path id="menu-icon-open-assignments" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    <path id="menu-icon-close-assignments" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" class="hidden"></path>
+                </svg>
+            </button>
+
+            <!-- Nav Links (Desktop) -->
+            <div class="hidden md:flex gap-6">
+                <a href="main.html" class="hover:underline text-lg Rubik-SemiBold">Home</a>
+                <a href="tests.html" class="hover:underline text-lg Rubik-SemiBold">Tests</a>
+                <a href="classes.html" class="hover:underline text-lg Rubik-SemiBold">Classes</a>
+                <a href="assignments.html" class="hover:underline text-lg Rubik-SemiBold">Assignments</a>
             </div>
-          </a>
-        </div>
 
-        <!-- Mobile Menu Button -->
-        <button
-          class="md:hidden ml-auto"
-          id="menu-toggle-classes"
-          aria-label="Toggle menu"
-        >
-          <svg
-            class="w-8 h-8 text-white"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-          >
-            <path
-              id="menu-icon-open-classes"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-            <path
-              id="menu-icon-close-classes"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M6 18L18 6M6 6l12 12"
-              class="hidden"
-            />
-          </svg>
-        </button>
-      </div>
+            <!-- Search Bar and Profile (Desktop) -->
+            <div class="flex items-center gap-4">
+                <div class="relative hidden md:block" id="search-container">
+                    <input placeholder="Search..." class="shadow-lg focus:border-2  px-5 py-2 rounded-xl w-48 transition-all focus:w-64 outline-none" name="search" type="search" id="search-input"/>
+                    <svg class="size-5 absolute top-2.5 left-3 text-gray-500" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" stroke-linejoin="round" stroke-linecap="round"></path>
+                    </svg>
+                </div>
 
-      <!-- Mobile Menu -->
-      <div
-        class="hidden md:hidden w-full bg-[#497D74] text-white flex-col items-center py-4 space-y-3"
-        id="mobile-menu-classes"
-      >
-        <a href="main.html" class="block text-xl">Home</a>
-        <a href="tests.html" class="block text-xl">Tests</a>
-        <a href="classes.html" class="block text-xl">Classes</a>
-        <a href="assignments.html" class="block text-xl">Assignments</a>
-        <div class="relative w-full px-4">
-          <input
-            placeholder="Search..."
-            class="shadow-lg focus:border-2 border-gray-300 px-5 py-2 rounded-xl w-full transition-all focus:outline-none"
-            name="search"
-            type="search"
-          />
-          <svg
-            class="size-5 absolute top-3 right-7 text-gray-500"
-            stroke="currentColor"
-            stroke-width="1.5"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-              stroke-linejoin="round"
-              stroke-linecap="round"
-            ></path>
-          </svg>
+                <!-- Profile Link and Image - Modified -->
+                <a href="profile.html" id="profile-link" class="hover:scale-110 transition-transform">
+                    <img id="navbar-profile-pic" src="https://via.placeholder.com/150" alt="Profile Picture" class="w-8 h-8 rounded-full object-cover">
+                </a>
+            </div>
         </div>
-        <a href="profile.html" class="block text-xl">Profile</a>
-      </div>
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden w-full  text-white flex-col items-center py-4 space-y-3" id="mobile-menu-assignments">
+            <a href="main.html" class="block text-xl">Home</a>
+            <a href="tests.html" class="block text-xl">Tests</a>
+            <a href="classes.html" class="block text-xl">Classes</a>
+            <a href="assignments.html" class="block text-xl">Assignments</a>
+            <div class="relative w-full px-4">
+                <input placeholder="Search..." class="shadow-lg focus:border-2 border-gray-300 px-5 py-2 rounded-xl w-full transition-all focus:outline-none" name="search" type="search" />
+                <svg class="size-5 absolute top-3 right-7 text-gray-500" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" stroke-linejoin="round" stroke-linecap="round"></path>
+                </svg>
+            </div>
+        </div>
     </nav>
 
     <!-- Heading -->
-    <h2 class="text-6xl font-semibold my-6">Ready for the challenge?</h2>
+    <h2 class="text-4xl md:text-6xl font-semibold my-6 text-center Rubik-Medium">Ready for the challenge?</h2>
 
     <!-- Content Box -->
-    <div class="bg-gray-200 p-6 rounded-xl w-full max-w-screen-xl mx-auto">
-      <!-- Tabs -->
-      <div
-        class="bg-teal-700 text-white px-4 py-2 rounded-lg inline-flex space-x-4"
-      >
-        <button class="px-4 py-1 text-3xl">Physics</button>
-        <button class="px-4 py-1 text-3xl">Maths</button>
-        <button class="px-4 py-1 text-3xl">Chemistry</button>
-      </div>
+    <div class="bg-gray-200 p-6 rounded-xl w-full max-w-screen-xl mx-auto bg-opacity-10">
+        <!-- Tabs -->
+        <div class=" text-white px-4 py-2 rounded-lg inline-flex space-x-4">
+            <button id="physics-tab" class="px-4 py-1 text-xl md:text-3xl Rubik-Medium focus:outline-none  active-tab">Physics</button>
+            <button id="maths-tab" class="px-4 py-1 text-xl md:text-3xl Rubik-Medium focus:outline-none ">Maths</button>
+            <button id="chemistry-tab" class="px-4 py-1 text-xl md:text-3xl Rubik-Medium focus:outline-none ">Chemistry</button>
+        </div>
 
-      <!-- Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-        <div
-          class="bg-white p-6 shadow rounded-lg text-left text-2xl relative flex flex-col"
-        >
-          <h2 class="text-3xl font-bold mb-4">Introduction to Probability</h2>
-          <p class="mb-4">
-            In this test, you will explore fundamental concepts of probability,
-            including:
-          </p>
-          <ol class="list-decimal pl-6 mb-4">
-            <li>
-              <strong>Basic probability rules</strong>: Understanding the
-              foundations of probability and how to calculate event likelihoods.
-            </li>
-            <li>
-              <strong>Independent and dependent events</strong>: Analyzing how
-              events influence each other or remain unaffected.
-            </li>
-            <li>
-              <strong>Conditional probability</strong>: Learning to calculate
-              the probability of an event occurring given that another event has
-              already occurred.
-            </li>
-            <li>
-              <strong>Probability distributions</strong>: Exploring how
-              probabilities are spread across possible outcomes.
-            </li>
-          </ol>
-          <button
-            class="mt-auto px-4 py-2 text-lg bg-teal-700 text-white rounded-lg self-end"
-          >
-            Start
-          </button>
+        <!-- Cards -->
+        <div id="physics-content" class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+            <!-- Physics Test Cards -->
+            <div class="bg-white p-6 shadow rounded-lg text-left text-base md:text-lg relative flex flex-col bg-opacity-10 border border-gray-700 break-words" style="max-height: 420px; overflow-y: auto; overflow-x: hidden;">
+                <h2 class="text-xl md:text-2xl font-bold mb-4 Rubik-Medium">Introduction to Kinematics</h2>
+                <p class="mb-4">This test covers fundamental concepts of motion in one dimension, including:</p>
+                <ul class="list-disc pl-6 mb-4">
+                    <li>Displacement, Velocity, and Acceleration</li>
+                    <li>Equations of Motion (SUVAT):  \( v = u + at \),  \( s = ut + \frac{1}{2}at^2 \), \( v^2 = u^2 + 2as \)</li>
+                    <li>Motion Graphs (displacement-time, velocity-time)</li>
+                    <li>Free Fall and Projectile Motion</li>
+                </ul>
+                <p>
+                    Kinematics is a branch of classical mechanics that describes the motion of points, bodies (objects), and systems of bodies without considering the forces that cause them to move. Key concepts include:
+                </p>
+                <ul class="list-disc pl-6 mb-4">
+                    <li><strong>Displacement (s):</strong> The change in position of an object. It's a vector quantity (has magnitude and direction).</li>
+                    <li><strong>Velocity (v):</strong> The rate of change of displacement. Also a vector quantity. Average velocity = Δs/Δt.</li>
+                    <li><strong>Acceleration (a):</strong> The rate of change of velocity. A vector quantity. Average acceleration = Δv/Δt.</li>
+                    <li><strong>Uniform Acceleration:</strong> When the acceleration is constant, we can use the SUVAT equations.</li>
+                    <li><strong>Free Fall:</strong> Motion under the influence of gravity alone (assuming negligible air resistance). The acceleration due to gravity (g) is approximately 9.81 m/s².</li>
+                </ul>
+                <p><strong>Example Problem:</strong><br> A car accelerates uniformly from rest to 20 m/s in 5 seconds. Find its acceleration and the distance traveled.</p>
+                <p><strong>Solution:</strong></p>
+                <ul class="list-disc pl-6">
+                    <li>u = 0 m/s (initial velocity)</li>
+                    <li>v = 20 m/s (final velocity)</li>
+                    <li>t = 5 s (time)</li>
+                    <li>a = ? (acceleration)</li>
+                    <li>s = ? (distance)</li>
+                </ul>
+                <p>Using \( v = u + at \):  20 = 0 + a × 5  ⇒  a = 4 m/s²</p>
+                <p>Using \( s = ut + \frac{1}{2}at^2 \): s = 0 × 5 + ½ × 4 × 5²  ⇒  s = 50 m</p>
+                <button class="mt-auto px-4 py-2 text-sm md:text-base bg-orange-500 hover:bg-orange-600 text-white rounded-lg self-end focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50">Start</button>
+            </div>
+            <div class="bg-white p-6 shadow rounded-lg text-center text-base md:text-lg relative flex flex-col bg-opacity-10 border border-gray-700 break-words" style="max-height: 420px; overflow-y: auto; overflow-x: hidden;">
+                <h2 class="text-xl md:text-2xl font-bold mb-4 Rubik-Medium">Forces and Newton's Laws</h2>
+                <p>This section will cover Newton's Three Laws of Motion, types of forces (friction, tension, normal force, gravity), free-body diagrams, and solving problems involving forces and motion.</p>
+                <ul class="list-disc pl-6 mb-4">
+                    <li><strong>Newton's First Law (Inertia):</strong> An object remains at rest or in uniform motion unless acted upon by an external force.</li>
+                    <li><strong>Newton's Second Law:</strong> \( F = ma \), where \( F \) is force, \( m \) is mass, and \( a \) is acceleration.</li>
+                    <li><strong>Newton's Third Law:</strong> For every action, there is an equal and opposite reaction.</li>
+                </ul>
+                <p><strong>Types of Forces:</strong></p>
+                <ul class="list-disc pl-6 mb-4">
+                    <li><strong>Friction:</strong> Opposes motion between surfaces.</li>
+                    <li><strong>Tension:</strong> Force in a string or rope.</li>
+                    <li><strong>Normal Force:</strong> Perpendicular force exerted by a surface.</li>
+                    <li><strong>Gravity:</strong> Force of attraction between masses (\( F = mg \)).</li>
+                </ul>
+                <p><strong>Example Problem:</strong><br>A 10 kg box is pushed with a force of 50 N. If the coefficient of friction is 0.3, find the acceleration.</p>
+                <p><strong>Solution:</strong></p>
+                <ul class="list-disc pl-6">
+                    <li>Normal force \( N = mg = 10 \times 9.81 = 98.1 \, N \)</li>
+                    <li>Frictional force \( F_f = \mu N = 0.3 \times 98.1 = 29.43 \, N \)</li>
+                    <li>Net force \( F_{net} = 50 - 29.43 = 20.57 \, N \)</li>
+                    <li>Acceleration \( a = F_{net}/m = 20.57/10 = 2.057 \, m/s^2 \)</li>
+                </ul>
+                <button class="mt-auto px-4 py-2 text-sm md:text-base bg-orange-500 hover:bg-orange-600 text-white rounded-lg self-end focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50">Start</button>
+            </div>
+            <div class="bg-white p-6 shadow rounded-lg text-center text-base md:text-lg relative flex flex-col bg-opacity-10 border border-gray-700 break-words" style="max-height: 420px; overflow-y: auto; overflow-x:hidden;">
+                <h2 class="text-xl md:text-2xl font-bold mb-4 Rubik-Medium">Energy and Work</h2>
+                <p>This section will cover different forms of energy (kinetic, potential, thermal), the work-energy theorem, conservation of energy, and power.</p>
+                <ul class="list-disc pl-6 mb-4">
+                    <li><strong>Kinetic Energy (KE):</strong>  \( KE = \frac{1}{2}mv^2 \)</li>
+                    <li><strong>Potential Energy (PE):</strong> \( PE = mgh \) (gravitational potential energy)</li>
+                    <li><strong>Work-Energy Theorem:</strong> Work done = Change in kinetic energy (\( W = \Delta KE \))</li>
+                    <li><strong>Conservation of Energy:</strong> Total energy in a closed system remains constant.</li>
+                    <li><strong>Power:</strong> Rate of doing work (\( P = W/t \)).</li>
+                </ul>
+                <p><strong>Example Problem:</strong><br>A 2 kg object is lifted to a height of 5 m. Calculate its potential energy.</p>
+                <p><strong>Solution:</strong><br>
+                \( PE = mgh = 2 \times 9.81 \times 5 = 98.1 \, J \)</p>
+                <button class="mt-auto px-4 py-2 text-sm md:text-base bg-orange-500 hover:bg-orange-600 text-white rounded-lg self-end focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50">Start</button>
+            </div>
         </div>
-        <div
-          class="bg-white p-6 shadow rounded-lg text-center text-3xl relative flex flex-col"
-        >
-          test1
-          <button
-            class="mt-auto px-4 py-2 text-lg bg-teal-700 text-white rounded-lg self-end"
-          >
-            Start
-          </button>
+
+        <div id="maths-content" class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6 hidden">
+            <!-- Maths Test Cards -->
+            <div class="bg-white p-6 shadow rounded-lg text-left text-base md:text-lg relative flex flex-col bg-opacity-10 border border-gray-700 break-words" style="max-height: 420px; overflow-y: auto;overflow-x: hidden;">
+                <h2 class="text-xl md:text-2xl font-bold mb-4 Rubik-Medium">Algebra Fundamentals</h2>
+                <p class="mb-4">This test covers the basics of algebra, including:</p>
+                <ul class="list-disc pl-6 mb-4">
+                    <li><strong>Linear Equations:</strong> Equations of the form \( ax + b = c \).</li>
+                    <li><strong>Quadratic Equations:</strong>  \( ax^2 + bx + c = 0 \). Solved using:
+                        <ul>
+                            <li>Factoring</li>
+                            <li>Quadratic formula: \( x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \)</li>
+                        </ul>
+                    </li>
+                    <li><strong>Systems of Equations:</strong> Solving for multiple variables using substitution, elimination, or matrices.</li>
+                    <li><strong>Polynomials:</strong> Addition, subtraction, multiplication, and division.</li>
+                    <li><strong>Inequalities:</strong> Solving and graphing inequalities, including compound inequalities.</li>
+                </ul>
+
+                <p><strong>Example 1:</strong> Solve for x:  3x + 5 = 14</p>
+                <p><strong>Solution:</strong> 3x = 9  ⇒  x = 3</p>
+                <p><strong>Example 2:</strong> Solve for x: x² - 5x + 6 = 0</p>
+                <p><strong>Solution:</strong> (x - 2)(x - 3) = 0  ⇒  x = 2 or x = 3</p>
+                <p><strong>Example 3:</strong> Solve the system of equations:</p>
+                <ul  class="list-disc pl-6 mb-4">
+                    <li>2x + y = 7</li>
+                    <li>x - y = 2</li>
+                </ul>
+                <p><strong>Solution:</strong> Adding the equations, we get 3x = 9 ⇒ x = 3.  Substituting into the first equation: 2(3) + y = 7 ⇒ y = 1. So the solution is x = 3, y = 1.</p>
+                <button class="mt-auto px-4 py-2 text-sm md:text-base bg-orange-500 hover:bg-orange-600 text-white rounded-lg self-end focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50">Start</button>
+            </div>
+            <div class="bg-white p-6 shadow rounded-lg text-center text-base md:text-lg relative flex flex-col bg-opacity-10 border border-gray-700 break-words" style="max-height: 420px; overflow-y: auto; overflow-x:hidden;">
+                <h2 class="text-xl md:text-2xl font-bold mb-4 Rubik-Medium">Calculus 1</h2>
+                <p>This section will cover limits, derivatives, and basic integration techniques. Key concepts include the power rule, chain rule, product rule, and quotient rule for differentiation, and the power rule and basic u-substitution for integration.</p>
+                <p><strong>Derivatives:</strong></p>
+                <ul class="list-disc pl-6 mb-4">
+                    <li>Power rule: \( \frac{d}{dx}x^n = nx^{n-1} \)</li>
+                    <li>Chain rule: \( \frac{d}{dx}f(g(x)) = f'(g(x)) \cdot g'(x) \)</li>
+                </ul>
+                <p><strong>Integrals:</strong></p>
+                <ul class="list-disc pl-6 mb-4">
+                    <li>Power rule: \( \int x^n \, dx = \frac{x^{n+1}}{n+1} + C \)</li>
+                    <li>Substitution: \( \int f(g(x))g'(x) \, dx = \int f(u) \, du \)</li>
+                </ul>
+                <p><strong>Example Problem:</strong><br>Find the derivative of  \( f(x) = 3x^2 + 2x + 1 \).</p>
+                <p><strong>Solution:</strong><br>\( f'(x) = 6x + 2 \)</p>
+
+                <button class="mt-auto px-4 py-2 text-sm md:text-base bg-orange-500 hover:bg-orange-600 text-white rounded-lg self-end focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50">Start</button>
+            </div>
+            <div class="bg-white p-6 shadow rounded-lg text-center text-base md:text-lg relative flex flex-col bg-opacity-10 border border-gray-700 break-words" style="max-height: 420px; overflow-y: auto; overflow-x:hidden;">
+                <h2 class="text-xl md:text-2xl font-bold mb-4 Rubik-Medium">Geometry Basics</h2>
+                <p>This section will cover fundamental geometric shapes (triangles, circles, quadrilaterals, etc.), area and perimeter calculations, the Pythagorean theorem, and basic trigonometry (sine, cosine, tangent).</p>
+                <ul class="list-disc pl-6 mb-4">
+                    <li><strong>Triangles:</strong> Area = \( \frac{1}{2} \times base \times height \)</li>
+                    <li><strong>Circles:</strong> Area = \( \pi r^2 \), Circumference = \( 2\pi r \)</li>
+                    <li><strong>Pythagorean Theorem:</strong> \( a^2 + b^2 = c^2 \) (for right triangles)</li>
+                    <li><strong>Trigonometry:</strong> \( \sin \theta = \frac{opposite}{hypotenuse} \), \( \cos \theta = \frac{adjacent}{hypotenuse} \),  \( \tan \theta = \frac{opposite}{adjacent} \)</li>
+                </ul>
+                <p><strong>Example Problem:</strong><br>Find the area of a circle with radius 7 cm.</p>
+                <p><strong>Solution:</strong><br>\( A = \pi r^2 = \pi \times 7^2 = 49\pi \, cm^2 \)</p>
+                <button class="mt-auto px-4 py-2 text-sm md:text-base bg-orange-500 hover:bg-orange-600 text-white rounded-lg self-end focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50">Start</button>
+            </div>
         </div>
-        <div
-          class="bg-white p-6 shadow rounded-lg text-center text-3xl relative flex flex-col"
-        >
-          test1
-          <button
-            class="mt-auto px-4 py-2 text-lg bg-teal-700 text-white rounded-lg self-end"
-          >
-            Start
-          </button>
+
+        <div id="chemistry-content" class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6 hidden">
+            <!-- Chemistry Test Cards -->
+            <div class="bg-white p-6 shadow rounded-lg text-left text-base md:text-lg relative flex flex-col bg-opacity-10 border border-gray-700 break-words" style="max-height: 420px; overflow-y: auto; overflow-x:hidden">
+                <h2 class="text-xl md:text-2xl font-bold mb-4 Rubik-Medium">Atomic Structure and Bonding</h2>
+                <p class="mb-4">This test covers the fundamentals of atomic structure and chemical bonding, including:</p>
+                <ul class="list-disc pl-6 mb-4">
+                    <li><strong>Structure of the Atom:</strong> Protons, neutrons, and electrons. Atomic number and mass number. Isotopes.</li>
+                    <li><strong>Electron Configuration:</strong> Arrangement of electrons in orbitals (e.g., \( 1s^2 2s^2 2p^6 \)).</li>
+                    <li><strong>Ionic Bonding:</strong> Transfer of electrons between atoms to form ions (e.g., NaCl).</li>
+                    <li><strong>Covalent Bonding:</strong> Sharing of electrons between atoms (e.g., H₂O).</li>
+                    <li><strong>Lewis Structures:</strong> Diagrams showing valence electrons.</li>
+                    <li><strong>VSEPR Theory:</strong> Predicts molecular shapes based on electron repulsion.</li>
+                </ul>
+
+                <p><strong>Example:</strong> Draw the Lewis structure for water (H₂O).</p>
+                <p><strong>Solution:</strong> Oxygen has 6 valence electrons, and each hydrogen has 1. Oxygen forms two single bonds with the hydrogen atoms and has two lone pairs of electrons. The Lewis structure shows this arrangement.</p>
+                <p><strong>Example:</strong> What is the electron configuration of oxygen?</p>
+                <p><strong>Solution:</strong> Oxygen has 8 electrons. The electron configuration is 1s²2s²2p&sup4;.</p>
+                <p><strong>Example:</strong> What type of bond is formed between sodium (Na) and chlorine (Cl)?</p>
+                <p><strong>Solution:</strong> Sodium readily loses an electron to form Na⁺, and chlorine readily gains an electron to form Cl⁻. The electrostatic attraction between these oppositely charged ions forms an ionic bond.</p>
+                <button class="mt-auto px-4 py-2 text-base md:text-lg bg-orange-500 hover:bg-orange-600 text-white rounded-lg self-end focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50">Start</button>
+            </div>
+            <div class="bg-white p-6 shadow rounded-lg text-center text-base md:text-lg relative flex flex-col bg-opacity-10 border border-gray-700 break-words" style="max-height: 420px; overflow-y: auto; overflow-x:hidden;">
+                <h2 class="text-xl md:text-2xl font-bold mb-4 Rubik-Medium">Stoichiometry</h2>
+                <p>This section will cover mole calculations, balancing chemical equations, limiting reactants, and percent yield.</p>
+                <ul class="list-disc pl-6 mb-4">
+                    <li><strong>Mole Calculations:</strong> \( n = \frac{m}{M} \) (moles = mass/molar mass)</li>
+                    <li><strong>Balancing Equations:</strong> Ensure the same number of atoms of each element on both sides of the equation.</li>
+                    <li><strong>Limiting Reactants:</strong> The reactant that is completely consumed in a chemical reaction, thus determining the maximum amount of product that can be formed.</li>
+                    <li><strong>Percent Yield:</strong> \( \frac{actual \, yield}{theoretical \, yield} \times 100 \)</li>
+                </ul>
+                <p><strong>Example Problem:</strong><br>Balance the following chemical equation: \( H_2 + O_2 \rightarrow H_2O \).</p>
+                <p><strong>Solution:</strong><br>The balanced equation is: \( 2H_2 + O_2 \rightarrow 2H_2O \)</p>
+                <button class="mt-auto px-4 py-2 text-base md:text-lg bg-orange-500 hover:bg-orange-600 text-white rounded-lg self-end focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50">Start</button>
+            </div>
+            <div class="bg-white p-6 shadow rounded-lg text-center text-base md:text-lg relative flex flex-col bg-opacity-10 border border-gray-700 break-words" style="max-height: 420px; overflow-y: auto; overflow-x:hidden;">
+                <h2 class="text-xl md:text-2xl font-bold mb-4 Rubik-Medium">Acids and Bases</h2>
+                <p>This section will cover the properties of acids and bases, pH calculations, titrations, and buffer solutions.</p>
+                <ul class="list-disc pl-6 mb-4">
+                    <li><strong>Acids:</strong> Donate protons (\( H^+ \)) in solution.</li>
+                    <li><strong>Bases:</strong> Accept protons (\( H^+ \)) in solution.</li>
+                    <li><strong>pH Scale:</strong>  A measure of the acidity or basicity of a solution. \( pH = -\log[H^+] \)</li>
+                    <li><strong>Titrations:</strong>  A technique used to determine the concentration of an unknown acid or base by reacting it with a solution of known concentration.</li>
+                    <li><strong>Buffer Solutions:</strong> Solutions that resist changes in pH when small amounts of acid or base are added.</li>
+                </ul>
+                 <p><strong>Example Problem:</strong><br>Calculate the pH of a solution with a hydrogen ion concentration of \( [H^+] = 1 \times 10^{-3} \, M \).</p>
+                <p><strong>Solution:</strong><br>\( pH = -\log(1 \times 10^{-3}) = 3 \)</p>
+                <button class="mt-auto px-4 py-2 text-base md:text-lg bg-orange-500 hover:bg-orange-600 text-white rounded-lg self-end focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50">Start</button>
+            </div>
         </div>
-      </div>
     </div>
-
-    <script>
-      const menuToggleClasses = document.getElementById("menu-toggle-classes");
-      const mobileMenuClasses = document.getElementById("mobile-menu-classes");
-      const menuIconOpenClasses = document.getElementById(
-        "menu-icon-open-classes"
-      );
-      const menuIconCloseClasses = document.getElementById(
-        "menu-icon-close-classes"
-      );
-
-      menuToggleClasses.addEventListener("click", () => {
-        mobileMenuClasses.classList.toggle("hidden");
-        menuIconOpenClasses.classList.toggle("hidden");
-        menuIconCloseClasses.classList.toggle("hidden");
-      });
-    </script>
-  </body>
+<script src="script.js"></script>
+</body>
 </html>

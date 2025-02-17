@@ -1,151 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="profile.css" />
-    <link rel="icon" type="image/png" href="images/logo.png" />
-    <style>
-      body {
-        font-family: "Lexend", sans-serif;
-        background-color: #efe9d5;
-      }
-      .progress-bar-fill {
-        background: linear-gradient(135deg, #497d74, #37665e);
-        transition: width 1s ease;
-        border-radius: 20px; /* Consistent border-radius */
-      }
-      .achievement-card {
-        background-color: #f8f9fa; /* Light background for cards */
-        border-radius: 8px;
-        padding: 10px;
-        text-align: center;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-      }
-    </style>
-  </head>
-  <body class="bg-gray-100">
-    <nav class="bg-[#497d74] p-4 rounded-b-lg shadow-md">
-      <div class="container mx-auto flex justify-between items-center">
-        <div class="flex items-center">
-          <a
-            href="main.html"
-            class="text-white hover:text-gray-200 text-lg font-semibold flex items-center"
-          >
-            <i class="fas fa-home mr-2"></i> Home
-          </a>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css"> <!-- Use the shared styles.css -->
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body class="bg-black p-4 min-h-screen text-white">
+
+    <!-- Navbar (IDENTICAL to other pages) -->
+    <nav class="p-4 rounded-lg w-full">
+        <div class="container mx-auto flex items-center justify-between">
+            <a href="main.html" id="logo-link">
+                <img src="images/logo2.png" alt="Home" class="h-12 w-15 text-white p-2" id="logo-image">
+            </a>
+
+            <!-- Hamburger Menu (Mobile) -->
+            <button class="md:hidden text-white focus:outline-none" id="hamburger-profile" aria-label="Toggle menu">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path id="menu-icon-open-profile" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    <path id="menu-icon-close-profile" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" class="hidden"></path>
+                </svg>
+            </button>
+
+            <!-- Nav Links (Desktop) -->
+            <div class="hidden md:flex gap-6">
+                <a href="main.html" class="hover:underline text-lg Rubik-SemiBold">Home</a>
+                <a href="tests.html" class="hover:underline text-lg Rubik-SemiBold">Tests</a>
+                <a href="classes.html" class="hover:underline text-lg Rubik-SemiBold">Classes</a>
+                <a href="assignments.html" class="hover:underline text-lg Rubik-SemiBold">Assignments</a>
+            </div>
+
+            <!-- Search Bar and Profile (Desktop) -->
+            <div class="flex items-center gap-4">
+                <div class="relative hidden md:block" id="search-container">
+                    <input placeholder="Search..." class="shadow-lg focus:border-2  px-5 py-2 rounded-xl w-48 transition-all focus:w-64 outline-none" name="search" type="search" id="search-input"/>
+                    <svg class="size-5 absolute top-2.5 left-3 text-gray-500" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" stroke-linejoin="round" stroke-linecap="round"></path>
+                    </svg>
+                </div>
+                <!-- Profile Link and Image -->
+                <a href="profile.html" id="profile-link" class="hover:scale-110 transition-transform">
+                    <img id="navbar-profile-pic" src="https://via.placeholder.com/150" alt="Profile Picture" class="w-8 h-8 rounded-full object-cover">
+                </a>
+            </div>
         </div>
-        <div>
-          <button
-            onclick="logout()"
-            class="bg-[#efe9d5] hover:bg-[#bab195] text-[#497d74] font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out"
-          >
-            Logout
-          </button>
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden w-full  text-white flex-col items-center py-4 space-y-3" id="mobile-menu-profile">
+            <a href="main.html" class="block text-xl">Home</a>
+            <a href="tests.html" class="block text-xl">Tests</a>
+            <a href="classes.html" class="block text-xl">Classes</a>
+            <a href="assignments.html" class="block text-xl">Assignments</a>
+            <div class="relative w-full px-4">
+                <input placeholder="Search..." class="shadow-lg focus:border-2 border-gray-300 px-5 py-2 rounded-xl w-full transition-all focus:outline-none" name="search" type="search" />
+                <svg class="size-5 absolute top-3 right-7 text-gray-500" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" stroke-linejoin="round" stroke-linecap="round"></path>
+                </svg>
+            </div>
         </div>
-      </div>
     </nav>
 
-    <div class="container mx-auto p-6">
-      <div class="md:flex md:space-x-8">
-        <!-- Left Section (Profile) -->
-        <div class="md:w-1/4 mb-8 md:mb-0">
-          <div class="bg-white p-6 rounded-lg shadow-lg text-center">
-            <img
-              id="profile-pic"
-              src="https://via.placeholder.com/150"
-              alt="Profile Picture"
-              class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-[#497d74]"
-            />
-            <h1 id="username" class="text-2xl font-semibold">Loading...</h1>
-            <p id="bio" class="text-gray-600">Fetching user data...</p>
-          </div>
+    <div class="container mx-auto p-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <!-- Left Section (Profile) -->
+            <div class="md:col-span-1">
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                    <img id="profile-pic" src="https://via.placeholder.com/150" alt="Profile Picture" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-orange-500">
+                    <h1 id="username" class="text-2xl font-semibold Rubik-Medium">Loading...</h1>
+                    <p id="bio" class="text-gray-400">Fetching user data...</p>
+                </div>
+            </div>
+
+            <!-- Right Section (Sections) -->
+            <div class="md:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Progress Section -->
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h2 class="text-xl font-semibold mb-4 Rubik-Medium">Your Progress</h2>
+                    <div class="w-full bg-gray-700 rounded-full h-2.5">
+                        <div class="bg-orange-500 h-2.5 rounded-full" id="progress-fill" style="width: 0%;"></div>
+                    </div>
+                    <p id="progress-text" class="mt-2 text-gray-400">0% completed</p>
+                </div>
+
+                <!-- Achievements Section -->
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h2 class="text-xl font-semibold mb-4 Rubik-Medium">Achievements</h2>
+                    <div id="achievements-container" class="grid grid-cols-2 gap-4">
+                        <p class = "text-sm">Loading achievements...</p>
+                    </div>
+                </div>
+
+                <!-- Update Profile Section -->
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h2 class="text-xl font-semibold mb-4 Rubik-Medium">Update Profile</h2>
+                    <textarea id="update-bio" placeholder="Update your bio" class="w-full p-3 bg-gray-700 text-white border border-gray-600 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"></textarea>
+                    <input type="text" id="update-profile-pic" placeholder="Profile Picture URL" class="w-full p-3 bg-gray-700 text-white border border-gray-600 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                    <button onclick="updateProfile()" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out w-full focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50">Update Profile</button>
+                </div>
+
+                <!-- Daily Goal Section -->
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <h2 class="text-xl font-semibold mb-4 Rubik-Medium">Set Daily Goal</h2>
+                    <input type="number" id="daily-goal" placeholder="Daily Learning Goal (minutes)" class="w-full p-3 bg-gray-700 text-white border border-gray-600 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                    <button onclick="updateDailyGoal()" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out w-full focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50">Save Goal</button>
+                </div>
+            </div>
         </div>
-
-        <!-- Right Section (Sections) -->
-        <div class="md:w-3/4">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <!-- Progress Section -->
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-              <h2 class="text-xl font-semibold mb-4 text-[#497d74]">
-                Your Progress
-              </h2>
-              <div class="progress-bar">
-                <div class="progress-bar-fill" id="progress-fill"></div>
-              </div>
-              <p id="progress-text" class="mt-2 text-gray-600">0% completed</p>
-            </div>
-
-            <!-- Achievements Section -->
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-              <h2 class="text-xl font-semibold mb-4 text-[#497d74]">
-                Achievements
-              </h2>
-              <div id="achievements-container" class="grid grid-cols-2 gap-4">
-                <p>Loading achievements...</p>
-              </div>
-            </div>
-
-            <!-- Update Profile Section -->
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-              <h2 class="text-xl font-semibold mb-4 text-[#497d74]">
-                Update Profile
-              </h2>
-              <textarea
-                id="update-bio"
-                placeholder="Update your bio"
-                class="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-[#497d74] focus:border-transparent"
-              ></textarea>
-              <input
-                type="text"
-                id="update-profile-pic"
-                placeholder="Profile Picture URL"
-                class="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-[#497d74] focus:border-transparent"
-              />
-              <button
-                onclick="updateProfile()"
-                class="bg-[#497d74] hover:bg-[#37665e] text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out w-full"
-              >
-                Update Profile
-              </button>
-            </div>
-
-            <!-- Daily Goal Section -->
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-              <h2 class="text-xl font-semibold mb-4 text-[#497d74]">
-                Set Daily Goal
-              </h2>
-              <input
-                type="number"
-                id="daily-goal"
-                placeholder="Daily Learning Goal (minutes)"
-                class="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-[#497d74] focus:border-transparent"
-              />
-              <button
-                onclick="updateDailyGoal()"
-                class="bg-[#497d74] hover:bg-[#37665e] text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out w-full"
-              >
-                Save Goal
-              </button>
-            </div>
-          </div>
+        <div class = "mt-4">
+        <button onclick="logout()" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">Logout</button>
         </div>
-      </div>
     </div>
 
-    <script src="profile.js"></script>
-  </body>
+<script src="script.js"></script>
+<script src="profile.js"></script>
+</body>
 </html>

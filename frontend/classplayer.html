@@ -1,184 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lecture Video</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="classplayerstyles.css" />
-    <link rel="icon" type="image/png" href="images/logo.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css"> <!-- Use the shared styles.css -->
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <!-- Font Awesome (Optional - for navbar icons if you want them) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body class="bg-black p-4 min-h-screen text-white">
 
-    <!-- Custom Styles -->
-    <style>
-      body {
-        background-color: #f7f6f2;
-      }
-      .video-container {
-        background-color: #f4eddc;
-        border-radius: 16px;
-        padding: 20px;
-        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
-      }
-      .comment-box {
-        height: 400px;
-        overflow-y: auto;
-      }
-    </style>
-  </head>
-  <body class="bg-white p-4 h-screen moving-background">
     <!-- Navbar -->
-    <nav class="navbar flex items-center justify-between w-full">
-      <a href="main.html">
-        <img
-          src="images/logoMain.png"
-          alt="home"
-          class="h-20 w-19 text-white p-2 rounded-full"
-        />
-      </a>
-      <div class="flex gap-6 text-white ml-auto">
-        <a
-          href="main.html"
-          class="relative text-2xl font-medium pb-1 after:block after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full"
-        >
-          Home
-        </a>
-        <a
-          href="tests.html"
-          class="relative text-2xl font-medium pb-1 after:block after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full"
-        >
-          Tests
-        </a>
-        <a
-          href="classes.html"
-          class="relative text-2xl font-medium pb-1 after:block after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full"
-        >
-          Classes
-        </a>
-        <a
-          href="assignments.html"
-          class="relative text-2xl font-medium pb-1 after:block after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full"
-        >
-          Assignments
-        </a>
-      </div>
-
-      <button class="text-white ml-auto" style="padding-right: 20px">
-        <div class="relative">
-          <input
-            placeholder="Search..."
-            class="input shadow-lg focus:border-2 border-gray-300 px-5 py-3 rounded-xl w-56 transition-all focus:w-64 outline-none"
-            name="search"
-            type="search"
-          />
-          <svg
-            class="size-6 absolute top-3 right-3 text-gray-500"
-            stroke="currentColor"
-            stroke-width="1.5"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-              stroke-linejoin="round"
-              stroke-linecap="round"
-            ></path>
-          </svg>
-        </div>
-      </button>
-
-      <a href="profile.html">
-        <div
-          class="flex bg-white w-fit px-1.25 py-1.25 shadow-box-up rounded-2xl dark:bg-box-dark dark:shadow-box-dark-out"
-        >
-          <div
-            class="dark:shadow-buttons-box-dark rounded-2xl w-full px-1.5 py-1.5 md:px-3 md:py-3"
-          >
-            <a
-              title="Go to about me page"
-              href="profile.html"
-              class="text-light-blue-light hover:text-black dark:text-gray-400 border-2 inline-flex items-center mr-4 last-of-type:mr-0 p-2.5 border-transparent bg-light-secondary shadow-button-flat-nopressed hover:border-2 hover:shadow-button-flat-pressed focus:opacity-100 focus:outline-none active:border-2 active:shadow-button-flat-pressed font-medium rounded-full text-sm text-center dark:bg-button-curved-default-dark dark:shadow-button-curved-default-dark dark:hover:bg-button-curved-pressed-dark dark:hover:shadow-button-curved-pressed-dark dark:active:bg-button-curved-pressed-dark dark:active:shadow-button-curved-pressed-dark dark:focus:bg-button-curved-pressed-dark dark:focus:shadow-button-curved-pressed-dark dark:border-0"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-4 h-4"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
+    <nav class="p-4 rounded-lg w-full">
+        <div class="container mx-auto flex items-center justify-between">
+            <a href="main.html" id="logo-link">
+                <img src="images/logo2.png" alt="Home" class="h-12 w-15 text-white p-2" id="logo-image">
             </a>
-          </div>
+
+            <!-- Hamburger Menu (Mobile) -->
+            <button class="md:hidden text-white focus:outline-none" id="hamburger-player" aria-label="Toggle menu">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path id="menu-icon-open-player" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    <path id="menu-icon-close-player" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" class="hidden"></path>
+                </svg>
+            </button>
+
+            <!-- Nav Links (Desktop) -->
+            <div class="hidden md:flex gap-6">
+                <a href="main.html" class="hover:underline text-lg Rubik-SemiBold">Home</a>
+                <a href="tests.html" class="hover:underline text-lg Rubik-SemiBold">Tests</a>
+                <a href="classes.html" class="hover:underline text-lg Rubik-SemiBold">Classes</a>
+                <a href="assignments.html" class="hover:underline text-lg Rubik-SemiBold">Assignments</a>
+            </div>
+
+            <!-- Search Bar and Profile (Desktop) -->
+            <div class="flex items-center gap-4">
+                <div class="relative hidden md:block" id="search-container">
+                    <input placeholder="Search..." class="shadow-lg focus:border-2  px-5 py-2 rounded-xl w-48 transition-all focus:w-64 outline-none" name="search" type="search" id="search-input"/>
+                    <svg class="size-5 absolute top-2.5 left-3 text-gray-500" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" stroke-linejoin="round" stroke-linecap="round"></path>
+                    </svg>
+                </div>
+
+                <a href="profile.html" id="profile-link">
+                    <div class="flex items-center bg-white px-3 py-2 rounded-full shadow-md">
+                        <img id="navbar-profile-pic" src="https://via.placeholder.com/150" alt="Profile Picture" class="w-8 h-8 rounded-full">
+                    </div>
+                </a>
+            </div>
         </div>
-      </a>
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden w-full  text-white flex-col items-center py-4 space-y-3" id="mobile-menu-player">
+            <a href="main.html" class="block text-xl">Home</a>
+            <a href="tests.html" class="block text-xl">Tests</a>
+            <a href="classes.html" class="block text-xl">Classes</a>
+            <a href="assignments.html" class="block text-xl">Assignments</a>
+            <div class="relative w-full px-4">
+                <input placeholder="Search..." class="shadow-lg focus:border-2 border-gray-300 px-5 py-2 rounded-xl w-full transition-all focus:outline-none" name="search" type="search" />
+                <svg class="size-5 absolute top-3 right-7 text-gray-500" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" stroke-linejoin="round" stroke-linecap="round"></path>
+                </svg>
+            </div>
+        </div>
     </nav>
 
-    <div class="container mx-auto px-4">
-      <div class="grid grid-cols-4 gap-6">
-        <!-- Video Section (Takes 3/4 of screen) -->
-        <div style="margin-left: -1.5rem" class="col-span-3">
-          <h1 class="mt-8 text-4xl font-bold text-gray-800 mb-4">
-            Math Class - Algebra Basics
-          </h1>
-          <!-- Video Player -->
-          <div class="video-container w-full">
-            <video controls class="w-full h-[500px] rounded-lg">
-              <source
-                src="https://www.pexels.com/download/video/6548176/"
-                type="video/mp4"
-              />
-              Your browser does not support the video tag.
-            </video>
-          </div>
+    <div class="container mx-auto px-8 py-12"> <!-- Increased padding -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8"> <!-- Increased gap -->
+            <!-- Video Section (Takes 3/4 of screen on larger screens) -->
+            <div class="md:col-span-3">
+                <h1 id="class-title" class="text-4xl font-bold mb-4 Rubik-Medium">Loading...</h1>
+                <!-- Video Player -->
+                <div class="video-container w-full aspect-w-16 aspect-h-9">
+                    <iframe id="video-player" class="w-full h-full rounded-lg" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
 
-          <!-- Lecture Description -->
-          <div class="mt-4 p-4 bg-white shadow-lg rounded-lg">
-            <h2 class="text-xl font-semibold">Lecture Description</h2>
-            <p class="text-gray-600 mt-2">
-              This lecture covers the fundamentals of Algebra, including
-              variables, equations, and expressions.
-            </p>
-          </div>
-        </div>
+                <!-- Lecture Description -->
+                <div class="mt-6 p-4 bg-gray-800 rounded-lg shadow-lg">
+                    <h2 class="text-xl font-semibold Rubik-Medium">Lecture Description</h2>
+                    <p id="lecture-description" class="mt-2"></p>
+                </div>
+            </div>
 
-        <!-- Comments Section (Takes 1/4 of screen) -->
-        <div class="col-span-1">
-          <h2 class="mt-8 text-2xl font-bold text-gray-800 mb-4">Comments</h2>
-          <div class="comment-box bg-white p-4 shadow-lg rounded-lg">
-            <div class="mb-3 border-b pb-2">
-              <p class="font-semibold">Alice</p>
-              <p class="text-gray-600">
-                Great lecture! Very clear explanations.
-              </p>
+            <!-- Comments Section (Takes 1/4 of screen on larger screens) -->
+            <div class="md:col-span-1">
+                <h2 class="text-2xl font-bold mb-4">Comments</h2>
+                <div class="comment-box bg-gray-800 p-4 rounded-lg shadow-lg h-[400px] overflow-y-auto">
+                    <div class="mb-3 border-b border-gray-700 pb-2">
+                        <p class="font-semibold">Alice</p>
+                        <p class="text-gray-400">Great lecture! Very clear explanations.</p>
+                    </div>
+                    <div class="mb-3 border-b border-gray-700 pb-2">
+                        <p class="font-semibold">Bob</p>
+                        <p class="text-gray-400">Can you explain more about quadratic equations?</p>
+                    </div>
+                    <div class="mb-3 border-b border-gray-700 pb-2">
+                        <p class="font-semibold">Charlie</p>
+                        <p class="text-gray-400">Thanks for the lesson!</p>
+                    </div>
+                    <!-- Add more comments here -->
+                </div>
             </div>
-            <div class="mb-3 border-b pb-2">
-              <p class="font-semibold">Bob</p>
-              <p class="text-gray-600">
-                Can you explain more about quadratic equations?
-              </p>
-            </div>
-            <div class="mb-3 border-b pb-2">
-              <p class="font-semibold">Charlie</p>
-              <p class="text-gray-600">Thanks for the lesson!</p>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
-
-    <!-- Bootstrap JS (Optional) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
+    <script src="script.js"></script>
+</body>
 </html>

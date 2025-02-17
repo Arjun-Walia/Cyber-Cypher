@@ -9,16 +9,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" href="images/logo.png">
-    <!-- Font Awesome (Optional - for navbar icons if you want them) -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body class="p-4 min-h-screen bg-black text-white">
-
     <!-- Navbar -->
     <nav class="p-4 rounded-lg w-full">
         <div class="container mx-auto flex items-center justify-between">
             <a href="main.html" id="logo-link">
-                <img src="images/logo2.png" alt="Home" class="text-white p-2 h-12 w-15" id="logo-image">  <!-- Removed rounded-full -->
+                <img src="images/logo2.png" alt="Home" class="h-12 w-15 text-white p-2" id="logo-image">  <!-- Removed rounded-full -->
             </a>
 
             <!-- Hamburger Menu (Mobile) -->
@@ -46,10 +45,9 @@
                     </svg>
                 </div>
 
-                <a href="profile.html" id="profile-link">
-                    <div class="flex items-center bg-white px-3 py-2 rounded-full shadow-md">
-                        <img id="navbar-profile-pic" src="https://via.placeholder.com/150" alt="Profile Picture" class="w-8 h-8 rounded-full">
-                    </div>
+                <!-- Profile Link and Image - Modified -->
+                <a href="profile.html" id="profile-link" class="hover:scale-110 transition-transform">
+                    <img id="navbar-profile-pic" src="https://via.placeholder.com/150" alt="Profile Picture" class="w-8 h-8 rounded-full object-cover">
                 </a>
             </div>
         </div>
